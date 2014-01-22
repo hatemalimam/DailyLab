@@ -6,8 +6,13 @@
 
 
 $(function() {         
-    $('.ui-inputtextarea').flexible();    
+    $('.ui-inputtextarea').flexible();       
 });
 
+
+function setSelectedText() {
+   var range = $('.ui-inputtextarea').textrange();  
+   setSelectedTextCommand([{name: 'selectedText', value: range.text}]);
+}
 
 

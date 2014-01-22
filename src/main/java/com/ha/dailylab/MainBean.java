@@ -28,6 +28,8 @@ public class MainBean implements Serializable{
     private String currentNav;
     
     private List<UserPojo> list;
+    
+    private String selectedTextInArea;
 
     public MainBean() {
         currentNav = "/checkBoxesJQuery/main.xhtml";
@@ -38,6 +40,12 @@ public class MainBean implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         Map map = context.getExternalContext().getRequestParameterMap();
         currentNav = (String) map.get("currentNav");
+    }
+    
+    public void setSelectedText() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map map = context.getExternalContext().getRequestParameterMap();
+        selectedTextInArea = (String) map.get("selectedText");
     }
 
     public String getCurrentNav() {
@@ -66,5 +74,12 @@ public class MainBean implements Serializable{
         list.add(new UserPojo("Stakr"));
         list.add(new UserPojo("Simi"));
     }
-    
+
+    public String getSelectedTextInArea() {
+        return selectedTextInArea;
+    }
+
+    public void setSelectedTextInArea(String selectedTextInArea) {
+        this.selectedTextInArea = selectedTextInArea;
+    }
 }
