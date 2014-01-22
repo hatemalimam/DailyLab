@@ -21,8 +21,7 @@ and open the template in the editor.
         <ui:composition template="/templates/default/main.xhtml">
             <ui:define name="content">
                 <h:form id="form">
-                    <p:inputTextarea rows="6" value="Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum" style="width: 100%;" >                     
-                        <p:ajax event="select" onstart="setSelectedText()" />
+                    <p:inputTextarea onselect="setSelectedText()" rows="6" value="Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum" style="width: 100%;" >                                            
                     </p:inputTextarea>                   
                     Selected Text is: <h:outputText value="#{mainBean.selectedTextInArea}" id="currentSelectedText" />
                     <p:remoteCommand name="setSelectedTextCommand" actionListener="#{mainBean.setSelectedText()}" update="currentSelectedText" />                    
