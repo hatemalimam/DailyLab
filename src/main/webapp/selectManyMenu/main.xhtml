@@ -44,7 +44,7 @@ and open the template in the editor.
                 <script>
                     function restrictMenu() {
                         //max selection size
-                        maxSelectionVar = 4;
+                        maxSelectionVar = maxSelection.jq.val();
                         if (maxSelectionVar.length != 0) {
                             if (selectManyMenuWV.input.find(':selected').length > maxSelectionVar) {
                                 selectManyMenuWV.unselectItem(selectManyMenuWV.items.filter(function() {
