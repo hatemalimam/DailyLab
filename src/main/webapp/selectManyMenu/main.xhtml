@@ -43,6 +43,9 @@ and open the template in the editor.
                 <script>
                     maxSelection.jq.val(3);
                     $(function() {
+                        selectManyMenuWV.items.on('click', function() { 
+                            restrictMenu($(this).text())
+                        })
                         selectManyMenuWV.checkboxes.on('click', function() {                                                       
                             restrictMenu($(this).parent().parent().text())
                         })
