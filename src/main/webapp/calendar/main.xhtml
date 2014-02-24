@@ -26,6 +26,7 @@ and open the template in the editor.
                 <script>
                     $('.disabledCalendar').children().fadeTo('slow', .7);
                     $('.disabledCalendar').append('<div style="position: absolute;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;filter: alpha(opacity = 50)"></div>');
+                    $(".ui-datepicker-inline td").unbind();
                 </script>
             </ui:define>
         </ui:composition>        
