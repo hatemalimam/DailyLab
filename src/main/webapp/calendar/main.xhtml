@@ -20,17 +20,29 @@ and open the template in the editor.
 
         <ui:composition template="/templates/default/main.xhtml">
             <ui:define name="content">
-                <h:form id="form">
-                    <p:calendar styleClass="disabledCalendar" mode="inline"/>
+                <h:form>
+                    <h:panelGroup id="toUpdate">
+                        <p:selectOneRadio id="customRadio" layout="custom" value="#{mainBean.currentNav}">
+                            <p:ajax process="@this queryOptions" update="toUpdate" onstart="console.log('updating')"/>
+                            <f:selectItem itemValue="A"/>
+                            <f:selectItem  itemValue="B"/>
+                            <f:selectItem  itemValue="C"/>                    
+                        </p:selectOneRadio>
+
+                        <p:panelGrid columns="3" id="queryOptions">
+                            <p:radioButton id="option1" for="customRadio" itemIndex="0">                        
+                            </p:radioButton>
+
+                            <p:radioButton id="option2" for="customRadio" itemIndex="1"/>
+                            <p:radioButton id="option3" for="customRadio" itemIndex="2"/>
+                        </p:panelGrid>
+                    </h:panelGroup>
+
+
+
                 </h:form>
-                <script>
-                    $(document).ready(function() {
-                        $('.disabledCalendar').children().fadeTo('slow', .7);
-                        $('.disabledCalendar').append('<div style="position: absolute;top:0;left:0;width: 100%;height:100%;z-index:2;opacity:0.4;filter: alpha(opacity = 50)"></div>');
-                        $(".ui-datepicker-inline td").unbind();
-                    }
-                    );
-                </script>
+
+
             </ui:define>
         </ui:composition>        
     </h:body>  
