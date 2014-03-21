@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pe="http://primefaces.org/ui/extensions">  
+  
+    <h:head>  
+        <h:outputStylesheet name="css/main.css" />        
+        <h:outputScript name="js/main.js" />                       
+    </h:head>  
+      
+    <h:body>  
+      
+        <pe:layout id="page" fullPage="true">
+            <!-- West -->
+            <pe:layoutPane id="west" position="west" >
+                <f:facet name="header">Main Menu</f:facet>
+
+                <h:form id="form1">
+
+                    <p:panelMenu id="panelMenu">
+                        <p:submenu label="Labs">
+                            <p:menuitem outcome="/checkBoxesJQuery/main.xhtml" value="CheckBoxes jQuery" /> 
+                             <p:menuitem outcome="/textArea/main.xhtml" value="Text Area" /> 
+                             <p:menuitem outcome="/menubar/main.xhtml" value="Menubar" />
+                             <p:menuitem outcome="/selectManyMenu/main.xhtml" value="selectManyMenu" />
+                             <p:menuitem outcome="/widgetsValidation/main.xhtml" value="widgetsValidation" />
+                        </p:submenu>
+                    </p:panelMenu>
+                    
+                   
+                </h:form>
+            </pe:layoutPane>
+
+            <!-- Center -->
+            <pe:layoutPane id="content" position="center">
+
+                <h:panelGroup id="centerpanel" layout="block">
+                    <ui:insert name="content" />
+                </h:panelGroup>
+
+            </pe:layoutPane>
+        </pe:layout>
+        
+          
+    </h:body>  
+</html>  
