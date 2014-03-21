@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">  
+
+    <h:head>  
+
+    </h:head>  
+
+    <h:body>  
+
+        <ui:composition template="/templates/default/main.xhtml">
+            <ui:define name="content">
+                <h:form id="form">
+                    <p:inputText onkeypress="if (event.keyCode == 13) {
+                                transfer(this.value);
+                                return false;
+                            } else {
+                                pickListWV.filter(this.value, pickListWV.sourceList)
+                            }" ></p:inputText>
+                                 <p:pickList value="#{pickListBean.cities}"
+                                var="city"  itemValue="#{city}" itemLabel="#{city}"
+                                widgetVar="pickListWV">  
+                                     <p:ajax event="transfer" listener="#{pickListBean.showValues()}" ></p:ajax>
+                        </p:pickList>                           
+                </h:form>
+                <script>                    
+                    function transfer(string) {
+                        pickListWV.sourceList.children().each(function() {
+                            var re = new RegExp(string, "i" );
+                            if ($(this).attr('data-item-label').match(re)) {
+                                pickListWV.selectItem($(this));// select the item
+                                pickListWV.add();// add it to the target
+                            }
+                        });
+                    }
+                </script>
+            </ui:define>
+        </ui:composition>        
+    </h:body>  
+</html>  

@@ -8,9 +8,12 @@ package com.ha.dailylab;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.EditableValueHolder;
+import org.apache.commons.lang3.StringUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DualListModel;
 
@@ -22,32 +25,13 @@ import org.primefaces.model.DualListModel;
 @ViewScoped
 public class PickListBean implements Serializable {
 
-    private List<DualListModel<String>> dsList = new ArrayList<DualListModel<String>>();
+    private DualListModel<String> cities;
 
     /**
      * Creates a new instance of PickListBean
      */
     public PickListBean() {
         fillList();
-    }
-
-    public List<DualListModel<String>> getDsList() {
-        return dsList;
-    }
-
-    public void setDsList(List<DualListModel<String>> dsList) {
-        this.dsList = dsList;
-    }
-
-    public void onDSTransfer() {
-        System.out.print("DSTransfer");
-        for (DualListModel<String> str1 : dsList) {
-            System.out.print("RemovedLBEntry:");           
-
-            for (String dsName1 : str1.getTarget()) {
-                System.out.print("RemovedLB:" + dsName1);
-            }
-        }
     }
 
     public void fillList() {
@@ -58,29 +42,21 @@ public class PickListBean implements Serializable {
         source.add("Izmir");
         source.add("Antalya");
         source.add("Bursa");
-
-        DualListModel cities = new DualListModel<String>(source, target);
-        dsList.add(cities);
+        cities = new DualListModel<String>(source, target);
+       
     }
 
-    public void handleTransfer(TransferEvent event) {
-        DualListModel<String> dualListModel = (DualListModel<String>)((EditableValueHolder) event.getComponent()).getValue();
-        
-        if(event.isAdd()) {
-            DualListModel<String> dualListModelInner = dsList.get(dsList.indexOf(dualListModel));
-            for(String soruce : dualListModelInner.getSource()) {
-                for(String targetToRemove: ((ArrayList<String>)event.getItems())) {
-                    dualListModelInner.getSource().remove(targetToRemove);
-                }
-            }
-            for(String target : dualListModelInner.getTarget()) {
-                for(String targetToAdd: ((ArrayList<String>)event.getItems())) {
-                    dualListModelInner.getTarget().add(targetToAdd);
-                }
-            }
-            dsList.remove(dsList.get(dsList.indexOf(dualListModel)));
-            dsList.add(dualListModel);
-        }
+    public DualListModel<String> getCities() {
+        return cities;
+    }
+
+    public void setCities(DualListModel<String> cities) {
+        this.cities = cities;
+    }
+    
+    public void showValues() {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Select Values", StringUtils.join(cities.getTarget(), ","));            
+        RequestContext.getCurrentInstance().showMessageInDialog(message);                
     }
 
 }
