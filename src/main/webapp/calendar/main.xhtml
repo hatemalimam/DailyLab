@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">  
+
+    <h:head>  
+
+    </h:head>  
+
+    <h:body>  
+
+        <ui:composition template="/templates/default/main.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGroup id="toUpdate">
+                        <p:selectOneRadio id="customRadio" layout="custom" value="#{mainBean.currentNav}">
+                            <p:ajax process="@this queryOptions" update="toUpdate" onstart="console.log('updating')"/>
+                            <f:selectItem itemValue="A"/>
+                            <f:selectItem  itemValue="B"/>
+                            <f:selectItem  itemValue="C"/>                    
+                        </p:selectOneRadio>
+
+                        <p:panelGrid columns="3" id="queryOptions">
+                            <p:radioButton id="option1" for="customRadio" itemIndex="0">                        
+                            </p:radioButton>
+
+                            <p:radioButton id="option2" for="customRadio" itemIndex="1"/>
+                            <p:radioButton id="option3" for="customRadio" itemIndex="2"/>
+                        </p:panelGrid>
+                    </h:panelGroup>
+
+
+
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>        
+    </h:body>  
+</html>  
