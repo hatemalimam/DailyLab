@@ -42,8 +42,9 @@ and open the template in the editor.
                 <script>
                     
                     $(function() {                                                 
-                            PrimeFaces.widget.SelectOneMenu.prototype.focusFilter = function(timeout) {
-                                mobileDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+                        
+                        mobileDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+                        PrimeFaces.widget.SelectOneMenu.prototype.focusFilter = function(timeout) {                                
                                 if(!mobileDevice) {
                                      if(timeout) {
                                 var $this = this;
@@ -55,14 +56,17 @@ and open the template in the editor.
                                     this.filterInput.focus();
                                 }
                            }                          
-                        }                                                        
+                        };                                                     
                        
-                      
-                        for (var propertyName in PrimeFaces.widgets) {
+                       if(mobileDevice) {
+                          for (var propertyName in PrimeFaces.widgets) {
                           if (PrimeFaces.widgets[propertyName] instanceof PrimeFaces.widget.SelectOneMenu) {
                             PrimeFaces.widgets[propertyName].focusInput.remove();
                           }
-                        }
+                        } 
+                       }
+                       
+                        
                       
     
                 });
