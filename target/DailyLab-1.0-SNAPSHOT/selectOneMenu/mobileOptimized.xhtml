@@ -41,41 +41,30 @@ and open the template in the editor.
                 </h:form>
                 <script>
                     
-                    $(function() {
-                       PrimeFaces.widget.SelectOneMenu.prototype.show = function() {
-                        mobileDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
-                        var $this = this;
-                        this.alignPanel();
-
-                        this.panel.css('z-index', ++PrimeFaces.zindex);
-
-                        if($.browser.msie &amp;&amp; /^[6,7]\.[0-9]+/.test($.browser.version)) {
-                            this.panel.parent().css('z-index', PrimeFaces.zindex - 1);
+                    $(function() {                                                 
+                            PrimeFaces.widget.SelectOneMenu.prototype.focusFilter = function(timeout) {
+                                mobileDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+                                if(!mobileDevice) {
+                                     if(timeout) {
+                                var $this = this;
+                                setTimeout(function() {
+                                    $this.focusFilter();
+                                }, timeout);
+                                }
+                                else {
+                                    this.filterInput.focus();
+                                }
+                           }                          
+                        }                                                        
+                       
+                      
+                        for (var propertyName in PrimeFaces.widgets) {
+                          if (PrimeFaces.widgets[propertyName] instanceof PrimeFaces.widget.SelectOneMenu) {
+                            PrimeFaces.widgets[propertyName].focusInput.remove();
+                          }
                         }
-
-                        if(this.cfg.effect !== 'none') {
-                            this.panel.show(this.cfg.effect, {}, this.cfg.effectSpeed, function() {
-                            PrimeFaces.scrollInView($this.itemsWrapper, $this.getActiveItem());
-
-                        if($this.cfg.filter &amp;&amp; !mobileDevice) {
-                            $this.focusFilter();
-                        }
-                    
-                        });
-                    }
-                    else {
-                        this.panel.show();
-                        PrimeFaces.scrollInView(this.itemsWrapper, this.getActiveItem());
-
-                        if($this.cfg.filter &amp;&amp; !mobileDevice) {
-                        this.focusFilter(10);
-                    }
-                
-                }
-
-                //value before panel is shown
-                this.preShowValue = this.options.filter(':selected');
-                };
+                      
+    
                 });
                     
                 </script>
