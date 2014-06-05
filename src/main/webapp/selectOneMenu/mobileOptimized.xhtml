@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">  
+
+    <h:head>  
+
+    </h:head>  
+
+    <h:body>  
+
+        <ui:composition template="/templates/default/main.xhtml">
+            <ui:define name="content">
+                <h:form id="form">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Select One Menu" />                        
+                        <p:selectOneMenu filter="true" filterMatchMode="startsWith" >  
+                            <f:selectItem itemLabel="Option 1" itemValue="1" />  
+                            <f:selectItem itemLabel="Option 2" itemValue="2" />  
+                            <f:selectItem itemLabel="Option 3" itemValue="3" />  
+                            <f:selectItem itemLabel="Option 4" itemValue="4" />  
+                            <f:selectItem itemLabel="Option 5" itemValue="5" />  
+                            <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+                            <f:selectItem itemLabel="Option 7" itemValue="7" />  
+                            <f:selectItem itemLabel="Option 8" itemValue="8" />  
+                            <f:selectItem itemLabel="Option 9" itemValue="9" /> 
+                            <f:selectItem itemLabel="Option 10" itemValue="10" />  
+                            <f:selectItem itemLabel="Option 11" itemValue="11" />  
+                            <f:selectItem itemLabel="Option 12" itemValue="12" /> 
+                        </p:selectOneMenu> 
+                    </p:panelGrid>                                    
+                </h:form>
+                <script>
+                    
+                    $(function() {
+                       PrimeFaces.widget.SelectOneMenu.prototype.show = function() {
+                        mobileDevice = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
+                        var $this = this;
+                        this.alignPanel();
+
+                        this.panel.css('z-index', ++PrimeFaces.zindex);
+
+                        if($.browser.msie &amp;&amp; /^[6,7]\.[0-9]+/.test($.browser.version)) {
+                            this.panel.parent().css('z-index', PrimeFaces.zindex - 1);
+                        }
+
+                        if(this.cfg.effect !== 'none') {
+                            this.panel.show(this.cfg.effect, {}, this.cfg.effectSpeed, function() {
+                            PrimeFaces.scrollInView($this.itemsWrapper, $this.getActiveItem());
+
+                        if($this.cfg.filter &amp;&amp; !mobileDevice) {
+                            $this.focusFilter();
+                        }
+                    
+                        });
+                    }
+                    else {
+                        this.panel.show();
+                        PrimeFaces.scrollInView(this.itemsWrapper, this.getActiveItem());
+
+                        if($this.cfg.filter &amp;&amp; !mobileDevice) {
+                        this.focusFilter(10);
+                    }
+                
+                }
+
+                //value before panel is shown
+                this.preShowValue = this.options.filter(':selected');
+                };
+                });
+                    
+                </script>
+            </ui:define>
+        </ui:composition>        
+    </h:body>  
+</html>  
