@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">  
+
+    <h:head>  
+
+    </h:head>  
+
+    <h:body>  
+
+        <ui:composition template="/templates/default/main.xhtml">            
+            <ui:define name="content">
+                <style>
+                     /* Change forzen width */
+                     .ui-datatable-frozenlayout-left {
+                         width: 20%;
+                     }
+                </style>
+                <script>
+                    function slideColumn(comp) {                        
+                        $('.ui-datatable-frozenlayout-left').css("width", comp.input.val()+"%");
+                    }
+                </script>
+                <h:form id="form">
+                    <p:dataTable value="#{mainBean.list}" var="user" frozenColumns="1"
+                                 scrollable="true" scrollHeight="150" scrollWidth="300">
+                        <p:column headerText="Name">
+                            #{user.name}
+                        </p:column>
+                        <p:column headerText="Name">
+                            #{user.name}
+                        </p:column>
+                        <p:column headerText="Name">
+                            #{user.name}
+                        </p:column>
+                    </p:dataTable>
+                    <p>
+                        <p:outputLabel value="Slide to change width" for="slider" />
+                        <h:inputHidden id="sliderInput"  />
+                        <p:slider id="slider" for="sliderInput" style="width: 200px" onSlide="slideColumn(this)" minValue="10" maxValue="70"  />
+                    </p>
+                    
+                </h:form>
+                <script src="https://gist.github.com/hatemalimam/04a7add36d8bfd666963.js"></script>
+            </ui:define>
+        </ui:composition>        
+    </h:body>  
+</html>  
+
+
