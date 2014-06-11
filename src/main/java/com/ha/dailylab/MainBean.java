@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -33,9 +34,9 @@ public class MainBean implements Serializable {
     private String selectedTextInArea;
 
     private Map<String, String> map;
-    
+
     private List<String> selectedList;
-    
+
     private PieChartModel pieModel1;
 
     public MainBean() {
@@ -115,7 +116,7 @@ public class MainBean implements Serializable {
     public void setSelectedList(List<String> selectedList) {
         this.selectedList = selectedList;
     }
-    
+
     public PieChartModel getPieModel1() {
         return pieModel1;
     }
@@ -123,16 +124,22 @@ public class MainBean implements Serializable {
     public void setPieModel1(PieChartModel pieModel1) {
         this.pieModel1 = pieModel1;
     }
-    
-    
-    
-     private void createPieModel1() {
+
+    private void createPieModel1() {
         pieModel1 = new PieChartModel();
-         
+
         pieModel1.set("Brand 1", 540);
         pieModel1.set("Brand 2", 325);
         pieModel1.set("Brand 3", 702);
         pieModel1.set("Brand 4", 421);
-                
+
+    }
+
+    public void sendLastCheckedBox() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        Map map = facesContext.getExternalContext().getRequestParameterMap();
+        String submitedValue = (String) map.get("submitedValue");
+        FacesMessage facesMessage = new FacesMessage(submitedValue);
+        facesContext.addMessage(null, facesMessage);
     }
 }
