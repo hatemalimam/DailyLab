@@ -34,7 +34,8 @@ and open the template in the editor.
                     <script>
                         $(document).ready(function() {
                             PF('selectCheckWV').inputs.change(function() {
-                                submitNewCheckBoxValue([{name: 'submitedValue', value: $(this).val()}]);
+                                if($(this).prop('checked'))
+                                    submitNewCheckBoxValue([{name: 'submitedValue', value: $(this).val()}]);
                             });
                         });
                     </script>
