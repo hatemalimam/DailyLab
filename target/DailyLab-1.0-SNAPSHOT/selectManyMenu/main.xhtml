@@ -41,26 +41,26 @@ and open the template in the editor.
                     </p:panelGrid>                                    
                 </h:form>
                 <script>
-                    maxSelection.jq.val(3);
+                    PF('maxSelection').jq.val(3);
                     $(function() {
-                        selectManyMenuWV.items.on('click', function() { 
+                        PF('selectManyMenuWV').items.on('click', function() { 
                             restrictMenu($(this).text())
                         })
-                        selectManyMenuWV.checkboxes.on('click', function() {                                                       
+                        PF('selectManyMenuWV').checkboxes.on('click', function() {                                                       
                             restrictMenu($(this).parent().parent().text())
                         })
                     });
 
                     function restrictMenu(notValue) {
                         //max selection size
-                        maxSelectionVar = maxSelection.jq.val();
+                        maxSelectionVar = PF('maxSelection').jq.val();
                         if (maxSelectionVar.length != 0) {
-                            if (selectManyMenuWV.input.find(':selected').length > maxSelectionVar) {
-                                selectManyMenuWV.unselectItem(selectManyMenuWV.items.filter(function() {    
-                                    if(selectManyMenuWV.input.find(':selected').eq(0).text() != notValue)                                         
-                                        return $(this).text() == selectManyMenuWV.input.find(':selected').eq(0).text();  
+                            if (PF('selectManyMenuWV').input.find(':selected').length > maxSelectionVar) {
+                                PF('selectManyMenuWV').unselectItem(PF('selectManyMenuWV').items.filter(function() {    
+                                    if(PF('selectManyMenuWV').input.find(':selected').eq(0).text() != notValue)                                         
+                                        return $(this).text() == PF('selectManyMenuWV').input.find(':selected').eq(0).text();  
                                     else
-                                        return $(this).text() == selectManyMenuWV.input.find(':selected:last').text();
+                                        return $(this).text() == PF('selectManyMenuWV').input.find(':selected:last').text();
                                 }))
                             }
                         }

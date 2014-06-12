@@ -25,7 +25,7 @@ and open the template in the editor.
                                 transfer(this.value);
                                 return false;
                             } else {
-                                pickListWV.filter(this.value, pickListWV.sourceList)
+                                PF('pickListWV').filter(this.value, PF('pickListWV').sourceList)
                             }" ></p:inputText>
                                  <p:pickList value="#{pickListBean.cities}"
                                 var="city"  itemValue="#{city}" itemLabel="#{city}"
@@ -35,11 +35,11 @@ and open the template in the editor.
                 </h:form>
                 <script>                    
                     function transfer(string) {
-                        pickListWV.sourceList.children().each(function() {
+                        PF('pickListWV').sourceList.children().each(function() {
                             var re = new RegExp(string, "i" );
                             if ($(this).attr('data-item-label').match(re)) {
-                                pickListWV.selectItem($(this));// select the item
-                                pickListWV.add();// add it to the target
+                                PF('pickListWV').selectItem($(this));// select the item
+                                PF('pickListWV').add();// add it to the target
                             }
                         });
                     }

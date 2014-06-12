@@ -5,11 +5,11 @@
  */
 
 $(function() {
-    selectWV.jq.change(function() {
-        if (selectWV.isChecked()) {
-            buttonWV.jq.show();
+    PF('selectWV').jq.change(function() {
+        if (PF('selectWV').isChecked()) {
+            PF('buttonWV').jq.show();
         } else {
-            buttonWV.jq.hide();
+            PF('buttonWV').jq.hide();
         }
     })
 })

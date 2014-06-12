@@ -5,12 +5,12 @@
  */
 
 $(function() {
-    buttonWV.disable();
-    selectWV.jq.change(function() {
-        if (selectWV.isChecked()) {
-            buttonWV.enable();
+    PF('buttonWV').disable();
+    PF('selectWV').jq.change(function() {
+        if (PF('selectWV').isChecked()) {
+            PF('buttonWV').enable();
         } else {
-            buttonWV.disable();
+            PF('buttonWV').disable();
         }
     })
 })
