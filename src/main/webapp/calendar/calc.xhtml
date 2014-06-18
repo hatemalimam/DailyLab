@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+
+        <ui:composition template="/templates/default/main.xhtml">
+            <ui:define name="content">
+                <h:form>            
+                    From
+                    <p:calendar widgetVar="fromCal" /> 
+                    To
+                    <p:calendar widgetVar="toCal" />                                            
+                    Calculation
+                    <p:inputText styleClass="daysNumber" />
+                </h:form>
+                <script>
+                    //<![CDATA[
+                    $(document).ready(function() {  
+                        //Bind onchange on textfields
+                        PF('fromCal').jq.change(function() { 
+                            calculateFromTo(PF('fromCal'), PF('toCal'));
+                        }); 
+                        PF('toCal').jq.change(function() { 
+                            calculateFromTo(PF('fromCal'), PF('toCal'));
+                        });
+                        
+                        //Bind dateSelect from popup
+                        PF('fromCal').cfg.behaviors = {
+                            dateSelect: function() {calculateFromTo(PF('fromCal'), PF('toCal'))},                              
+                        };
+                        PF('toCal').cfg.behaviors = {
+                            dateSelect: function() {calculateFromTo(PF('fromCal'), PF('toCal'))},                                                        
+                        };                        
+                    });
+                    
+                    //calculate function
+                    function calculateFromTo(from, to) {
+                        oneDay = 24 * 60 * 60 * 1000;
+                        fromDate = from.getDate();
+                        toDate = to.getDate();                        
+                        if (fromDate && toDate) {
+                            diffDays = Math.round(Math.abs((fromDate.getTime() -
+                                    toDate.getTime()) / (oneDay)));
+                            $('.daysNumber').val(diffDays + " Days");
+                        }
+                    }
+                    //]]>
+                </script>
+            </ui:define>
+        </ui:composition>        
+</html>  
