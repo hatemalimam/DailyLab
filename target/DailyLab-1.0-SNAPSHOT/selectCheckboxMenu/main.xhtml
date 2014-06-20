@@ -1,38 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://java.sun.com/jsf/html"  
       xmlns:f="http://java.sun.com/jsf/core"  
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">  
+      xmlns:p="http://primefaces.org/ui">  
 
-    <h:head>  
-
-    </h:head>  
-
-    <h:body>  
-
-        <ui:composition template="/templates/default/main.xhtml">
-            <ui:define name="content">
-                <h:form id="form">
-                    <p:panelGrid columns="1">
-                        <p>Min Selection is 5</p>
-                        <p:selectCheckboxMenu id="selectCheckboxMenuId" value="#{mainBean.selectedList}"  label="Select" filter="true" filterMatchMode="startsWith" panelStyle="width:220px">  
-                            <f:selectItems value="#{mainBean.map}" />  
-                            <f:validator validatorId="limitCheckboxMenuValidator" />                       
-                            <f:attribute name="minLimit" value="5" />
-                        </p:selectCheckboxMenu>  
-                        <p:commandButton value="submit"  />
-                        <p:messages autoUpdate="true" showDetail="true" />
-                    </p:panelGrid>
-                </h:form>               
-            </ui:define>
-        </ui:composition>        
-    </h:body>  
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">
+            <div class="page-title">	
+                <h3>Minimum Limit Validator</h3>		
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">Min Selection is <b>5</b></label>                                                    
+                                            <div class="controls">
+                                                <p:selectCheckboxMenu id="selectCheckboxMenuId" value="#{mainBean.selectedList}"  label="Select" filter="true" filterMatchMode="startsWith" panelStyle="width:220px">  
+                                                    <f:selectItems value="#{mainBean.map}" />  
+                                                    <f:validator validatorId="limitCheckboxMenuValidator" />                       
+                                                    <f:attribute name="minLimit" value="5" />
+                                                </p:selectCheckboxMenu> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                 <p:commandButton value="Validate"  />  
+                                            </div>
+                                        </div> 
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <p:messages id="message" autoUpdate="true" showDetail="true" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+            </h:form>    
+            <script src="https://gist.github.com/hatemalimam/4fa96aa28a3233a6a127.js"></script>
+            <script src="https://gist.github.com/hatemalimam/0565db8981da521ff839.js"></script>
+        </ui:define>
+    </ui:composition>         
 </html>  

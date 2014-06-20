@@ -1,50 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:h="http://java.sun.com/jsf/html"  
-      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"         
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">  
+      xmlns:p="http://primefaces.org/ui">  
 
-    <h:head>  
-
-    </h:head>  
-
-    <h:body>  
-
-        <ui:composition template="/templates/default/main.xhtml">
-            <ui:define name="content">
-                <h:form id="form">
-                    <p:inputText onkeypress="if (event.keyCode == 13) {
-                                transfer(this.value);
-                                return false;
-                            } else {
-                                PF('pickListWV').filter(this.value, PF('pickListWV').sourceList)
-                            }" ></p:inputText>
-                                 <p:pickList value="#{pickListBean.cities}"
-                                var="city"  itemValue="#{city}" itemLabel="#{city}"
-                                widgetVar="pickListWV">  
-                                     <p:ajax event="transfer" listener="#{pickListBean.showValues()}" ></p:ajax>
-                        </p:pickList>                           
-                </h:form>
-                <script>                    
-                    function transfer(string) {
-                        PF('pickListWV').sourceList.children().each(function() {
-                            var re = new RegExp(string, "i" );
-                            if ($(this).attr('data-item-label').match(re)) {
-                                PF('pickListWV').selectItem($(this));// select the item
-                                PF('pickListWV').add();// add it to the target
-                            }
-                        });
-                    }
-                </script>
-            </ui:define>
-        </ui:composition>        
-    </h:body>  
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">
+            <div class="page-title">	
+                <h3>Filter and Pick</h3>		
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">Filter and Select with Enter</label>                                                    
+                                            <div class="controls">
+                                                <p:inputText onkeypress="if (event.keyCode === 13) {
+                                                            transfer(this.value);
+                                                            return false;
+                                                        } else {
+                                                            PF('pickListWV').filter(this.value, PF('pickListWV').sourceList)
+                                                        }" ></p:inputText>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <p:pickList value="#{pickListBean.cities}"
+                                                            var="city"  itemValue="#{city}" itemLabel="#{city}"
+                                                            widgetVar="pickListWV">  
+                                                    <p:ajax event="transfer" listener="#{pickListBean.showValues()}" ></p:ajax>
+                                                </p:pickList>    
+                                            </div>
+                                        </div>                                                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </h:form>
+            <script src="https://gist.github.com/hatemalimam/6caa33d5da44d7f25515.js"></script>
+            <script>
+                function transfer(string) {
+                    PF('pickListWV').sourceList.children().each(function() {
+                        var re = new RegExp(string, "i");
+                        if ($(this).attr('data-item-label').match(re)) {
+                            PF('pickListWV').selectItem($(this));// select the item
+                            PF('pickListWV').add();// add it to the target
+                        }
+                    });
+                }
+            </script>
+        </ui:define>
+    </ui:composition>        
 </html>  

@@ -10,49 +10,87 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">  
 
-        <ui:composition template="/templates/default/main.xhtml">
-            <ui:define name="content">
-                <h:form>            
-                    From
-                    <p:calendar widgetVar="fromCal" /> 
-                    To
-                    <p:calendar widgetVar="toCal" />                                            
-                    Calculation
-                    <p:inputText styleClass="daysNumber" />
-                </h:form>
-                <script>
-                    //<![CDATA[
-                    $(document).ready(function() {  
-                        //Bind onchange on textfields
-                        PF('fromCal').jq.change(function() { 
-                            calculateFromTo(PF('fromCal'), PF('toCal'));
-                        }); 
-                        PF('toCal').jq.change(function() { 
-                            calculateFromTo(PF('fromCal'), PF('toCal'));
-                        });
-                        
-                        //Bind dateSelect from popup
-                        PF('fromCal').cfg.behaviors = {
-                            dateSelect: function() {calculateFromTo(PF('fromCal'), PF('toCal'))},                              
-                        };
-                        PF('toCal').cfg.behaviors = {
-                            dateSelect: function() {calculateFromTo(PF('fromCal'), PF('toCal'))},                                                        
-                        };                        
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">
+            <div class="page-title">	
+                <h3>Calculate Two Dates</h3>		
+            </div>
+            <h:form>               
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">From</label>
+                                            <span class="help">Start from this Date</span>
+                                            <div class="controls">
+                                                <p:calendar widgetVar="fromCal" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">To</label>
+                                            <span class="help">End to this Date</span>
+                                            <div class="controls">
+                                                <p:calendar widgetVar="toCal" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Calculation</label>
+                                            <span class="help">Calculation result in days</span>
+                                            <div class="controls">
+                                                <p:inputText styleClass="daysNumber" />
+                                            </div>
+                                        </div>                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <script src="https://gist.github.com/hatemalimam/71b2e252f019fecc8fcb.js"></script>
+            </h:form>
+            <script>
+                //<![CDATA[
+                $(document).ready(function() {
+                    //Bind onchange on textfields
+                    PF('fromCal').jq.change(function() {
+                        calculateFromTo(PF('fromCal'), PF('toCal'));
                     });
-                    
-                    //calculate function
-                    function calculateFromTo(from, to) {
-                        oneDay = 24 * 60 * 60 * 1000;
-                        fromDate = from.getDate();
-                        toDate = to.getDate();                        
-                        if (fromDate && toDate) {
-                            diffDays = Math.round(Math.abs((fromDate.getTime() -
-                                    toDate.getTime()) / (oneDay)));
-                            $('.daysNumber').val(diffDays + " Days");
-                        }
+                    PF('toCal').jq.change(function() {
+                        calculateFromTo(PF('fromCal'), PF('toCal'));
+                    });
+
+                    //Bind dateSelect from popup
+                    PF('fromCal').cfg.behaviors = {
+                        dateSelect: function() {
+                            calculateFromTo(PF('fromCal'), PF('toCal'))
+                        },
+                    };
+                    PF('toCal').cfg.behaviors = {
+                        dateSelect: function() {
+                            calculateFromTo(PF('fromCal'), PF('toCal'))
+                        },
+                    };
+                });
+
+                //calculate function
+                function calculateFromTo(from, to) {
+                    oneDay = 24 * 60 * 60 * 1000;
+                    fromDate = from.getDate();
+                    toDate = to.getDate();
+                    if (fromDate && toDate) {
+                        diffDays = Math.round(Math.abs((fromDate.getTime() -
+                                toDate.getTime()) / (oneDay)));
+                        $('.daysNumber').val(diffDays + " Days");
                     }
-                    //]]>
-                </script>
-            </ui:define>
-        </ui:composition>        
+                }
+                //]]>
+            </script>
+        </ui:define>
+    </ui:composition>        
 </html>  

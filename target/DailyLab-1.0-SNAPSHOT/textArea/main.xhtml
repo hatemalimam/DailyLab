@@ -1,35 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:h="http://java.sun.com/jsf/html"  
-      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"        
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">  
+      xmlns:p="http://primefaces.org/ui">  
 
-    <h:head>  
 
-    </h:head>  
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">
+            <div class="page-title">	
+                <h3>Focus Height Fix + Selected Text</h3>		                
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">                                       
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <p:inputTextarea onselect="setSelectedText()" rows="6" value="Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum" style="width: 100%;" >                                            
+                                                </p:inputTextarea>                   
+                                                <b>Selected Text is:</b> <h:outputText value="#{mainBean.selectedTextInArea}" id="currentSelectedText" />  
+                                            </div>
+                                        </div>                                                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <p:remoteCommand name="setSelectedTextCommand" actionListener="#{mainBean.setSelectedText()}" update="currentSelectedText" />                    
+            </h:form>
+            <script src="https://gist.github.com/hatemalimam/02f497ca0ef3b87e8b76.js"></script>
+            <script src="https://gist.github.com/hatemalimam/53c58dffd762a95617fe.js"></script>
+            <script src="https://gist.github.com/hatemalimam/b8ed4e69f61f8e9530d0.js"></script>
+            <script>$(function() {
+                                                        $('.ui-inputtextarea').flexible();
+                                                    });
 
-    <h:body>  
-
-        <ui:composition template="/templates/default/main.xhtml">
-            <ui:define name="content">
-                <h:form id="form">
-                    <p:inputTextarea onselect="setSelectedText()" rows="6" value="Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum" style="width: 100%;" >                                            
-                    </p:inputTextarea>                   
-                    Selected Text is: <h:outputText value="#{mainBean.selectedTextInArea}" id="currentSelectedText" />
-                    <p:remoteCommand name="setSelectedTextCommand" actionListener="#{mainBean.setSelectedText()}" update="currentSelectedText" />                    
-                </h:form>
-                 <h:outputScript library="js" name="jquery.flexibleArea.js" />
-                 <h:outputScript library="js" name="jquery-textrange.js" />
-                <h:outputScript library="js" name="textArea.js" /> 
-            </ui:define>
-        </ui:composition>        
-    </h:body>  
+                                                    function setSelectedText() {
+                                                        var range = $('.ui-inputtextarea').textrange();
+                                                        setSelectedTextCommand([{name: 'selectedText', value: range.text}]);
+                                                    }
+            </script>
+            <h:outputScript library="js" name="jquery.flexibleArea.js" />
+            <h:outputScript library="js" name="jquery-textrange.js" />           
+        </ui:define>
+    </ui:composition>        
 </html>  

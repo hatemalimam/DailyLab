@@ -1,54 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://java.sun.com/jsf/html"  
       xmlns:f="http://java.sun.com/jsf/core"  
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">  
+      xmlns:p="http://primefaces.org/ui">  
 
-    <h:head>  
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">
+            <div class="page-title">	
+                <h3>Roles CheckBoxes</h3>		
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <p:dataTable value="#{mainBean.list}" var="user"
+                                                     rows="10" id="tableId">
+                                            <p:column headerText="User">
+                                                #{user.name}
+                                            </p:column>
+                                            <p:column headerText="View">
+                                                <h:selectBooleanCheckbox id="view" />
+                                            </p:column>
+                                            <p:column headerText="Create">
+                                                <h:selectBooleanCheckbox id="create">
+                                                </h:selectBooleanCheckbox>
 
-    </h:head>  
+                                            </p:column>
+                                            <p:column headerText="Edit">
+                                                <h:selectBooleanCheckbox id="edit">
+                                                </h:selectBooleanCheckbox>
+                                            </p:column>
+                                            <p:column headerText="Delete">
+                                                <h:selectBooleanCheckbox id="delete">
+                                                </h:selectBooleanCheckbox>
+                                            </p:column>
+                                        </p:dataTable>                                                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
 
-    <h:body>  
+            </h:form>
+            <script src="https://gist.github.com/hatemalimam/a6560dd6a3d2664c32b4.js"></script>
+            <script>
+                //<![CDATA[
+                $(function() {
+                    $(PrimeFaces.escapeClientId('form:tableId'))
+                            .on(
+                                    "change",
+                                    "input[type='checkbox'][name*='edit'], input[type='checkbox'][name*='create'], input[type='checkbox'][name*='delete']",
+                                    function() {
+                                        var tr = $(this).parent().parent();
+                                        var view = tr
+                                                .find("input[type='checkbox'][name*='view']");
+                                        var create = tr
+                                                .find("input[type='checkbox'][name*='create']");
+                                        var edit = tr
+                                                .find("input[type='checkbox'][name*='edit']");
+                                        var deleteBox = tr
+                                                .find("input[type='checkbox'][name*='delete']");
+                                        if ($(this).is(':checked')) {
+                                            view.prop("checked", true);
+                                        } else {
+                                            if (create.is(':checked') || edit.is(':checked')
+                                                    || deleteBox.is(':checked')) {
+                                                view.prop("checked", true);
+                                            } else
+                                                view.prop("checked", false);
+                                        }
+                                    });
 
-        <ui:composition template="/templates/default/main.xhtml">
-            <ui:define name="content">
-                <h:form id="form">
-                    <p:dataTable value="#{mainBean.list}" var="user"
-                                 rows="10" id="tableId">
-                        <p:column headerText="User">
-                            #{user.name}
-                        </p:column>
-                        <p:column headerText="View">
-                            <h:selectBooleanCheckbox id="view" />
-                        </p:column>
-                        <p:column headerText="Create">
-                            <h:selectBooleanCheckbox id="create">
-
-                            </h:selectBooleanCheckbox>
-
-                        </p:column>
-                        <p:column headerText="Edit">
-                            <h:selectBooleanCheckbox id="edit">
-
-                            </h:selectBooleanCheckbox>
-                        </p:column>
-                        <p:column headerText="Delete">
-                            <h:selectBooleanCheckbox id="delete">
-
-                            </h:selectBooleanCheckbox>
-                        </p:column>
-                    </p:dataTable>  
-                </h:form>
-                <h:outputScript library="js" name="checkBoxesJQuery.js" /> 
-            </ui:define>
-        </ui:composition>        
-    </h:body>  
+                    $(PrimeFaces.escapeClientId('form:tableId')).on(
+                            "change",
+                            "input[type='checkbox'][name*='view']",
+                            function() {
+                                var tr = $(this).parent().parent();
+                                var view = tr.find("input[type='checkbox'][name*='view']");
+                                var create = tr.find("input[type='checkbox'][name*='create']");
+                                var edit = tr.find("input[type='checkbox'][name*='edit']");
+                                var deleteBox = tr
+                                        .find("input[type='checkbox'][name*='delete']");
+                                if ($(this).is(':not(:checked)')) {
+                                    create.prop("checked", false);
+                                    edit.prop("checked", false);
+                                    deleteBox.prop("checked", false);
+                                }
+                            });
+                });
+                //]]>
+            </script>
+        </ui:define>
+    </ui:composition>            
 </html>  

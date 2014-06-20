@@ -1,46 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://java.sun.com/jsf/html"  
       xmlns:f="http://java.sun.com/jsf/core"  
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">  
+      xmlns:p="http://primefaces.org/ui">  
 
-    <h:head>  
-
-    </h:head>  
-
-    <h:body>  
-
-        <ui:composition template="/templates/default/main.xhtml">
-            <ui:define name="content">
-                <h:form id="form">
-                    <p:growl autoUpdate="true" /> 
-                    <p:panelGrid columns="1">
-                        <p>Ajax elements submit</p>
-                        <p:selectCheckboxMenu id="selectCheckboxMenuId" value="#{mainBean.selectedList}"  label="Select" filter="true" filterMatchMode="startsWith" panelStyle="width:220px"
-                                              widgetVar="selectCheckWV">  
-                            <f:selectItems value="#{mainBean.map}" />                              
-                        </p:selectCheckboxMenu>  
-                        <p:remoteCommand name="submitNewCheckBoxValue" process="@this selectCheckboxMenuId" actionListener="#{mainBean.sendLastCheckedBox()}" />
-                        <p:commandButton value="submit"  />                        
-                    </p:panelGrid>
-                    <script>
-                        $(document).ready(function() {
-                            PF('selectCheckWV').inputs.change(function() {
-                                if($(this).prop('checked'))
-                                    submitNewCheckBoxValue([{name: 'submitedValue', value: $(this).val()}]);
-                            });
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">
+            <div class="page-title">	
+                <h3>Element By Element Submit</h3>		
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">Ajax elements submit</label>                                                    
+                                            <div class="controls">
+                                                <p:selectCheckboxMenu id="selectCheckboxMenuId" value="#{mainBean.selectedList}"  label="Select" filter="true" filterMatchMode="startsWith" panelStyle="width:220px"
+                                                                      widgetVar="selectCheckWV">  
+                                                    <f:selectItems value="#{mainBean.map}" />                              
+                                                </p:selectCheckboxMenu>
+                                            </div>
+                                        </div>                                                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p:growl autoUpdate="true" /> 
+                <p:remoteCommand name="submitNewCheckBoxValue" process="@this selectCheckboxMenuId" actionListener="#{mainBean.sendLastCheckedBox()}" />                       
+                <script>
+                    $(document).ready(function() {
+                        PF('selectCheckWV').inputs.change(function() {
+                            if ($(this).prop('checked'))
+                                submitNewCheckBoxValue([{name: 'submitedValue', value: $(this).val()}]);
                         });
-                    </script>
-                </h:form>               
-            </ui:define>
-        </ui:composition>        
-    </h:body>  
+                    });
+                </script>
+            </h:form>    
+            <script src="https://gist.github.com/hatemalimam/4e681c194e7975a7255d.js"></script>
+        </ui:define>
+    </ui:composition>         
 </html>  

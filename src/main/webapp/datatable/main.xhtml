@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://java.sun.com/jsf/html"  
@@ -12,48 +7,60 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">  
 
-    <h:head>  
 
-    </h:head>  
+    <ui:composition template="/templates/default/main.xhtml">            
+        <ui:define name="content">
+            <style>
+                /* !important is needed sometimes */
+                ::-webkit-scrollbar {
+                    width: 12px !important;
+                }
 
-    <h:body>  
+                /* Track */
+                ::-webkit-scrollbar-track {
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important; 
+                    -webkit-border-radius: 10px !important;
+                    border-radius: 10px !important;
+                }
 
-        <ui:composition template="/templates/default/main.xhtml">            
-            <ui:define name="content">
-                <style>
-                     /* !important is needed sometimes */
-                    ::-webkit-scrollbar {
-                        width: 12px !important;
-                    }
-
-                    /* Track */
-                    ::-webkit-scrollbar-track {
-                        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) !important; 
-                        -webkit-border-radius: 10px !important;
-                        border-radius: 10px !important;
-                    }
-
-                    /* Handle */
-                    ::-webkit-scrollbar-thumb {
-                        -webkit-border-radius: 10px !important;
-                        border-radius: 10px !important;
-                        background: rgba(255,0,0,0.8) !important; 
-                        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5) !important; 
-                    }
-                    ::-webkit-scrollbar-thumb:window-inactive {
-                        background: rgba(255,0,0,0.4) !important; 
-                    }
-                </style>
-                <h:form id="form">
-                    <p:dataTable scrollHeight="100" scrollable="true" scrollRows="2" value="#{mainBean.list}" var="user">
-                        <p:column headerText="Name">
-                            #{user.name}
-                        </p:column>
-                    </p:dataTable>
-                </h:form>
-            </ui:define>
-        </ui:composition>        
-    </h:body>  
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                    -webkit-border-radius: 10px !important;
+                    border-radius: 10px !important;
+                    background: rgba(255,0,0,0.8) !important; 
+                    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5) !important; 
+                }
+                ::-webkit-scrollbar-thumb:window-inactive {
+                    background: rgba(255,0,0,0.4) !important; 
+                }
+            </style>
+            <div class="page-title">	
+                <h3>Scroll Style</h3>		
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="grid simple">
+                        <div class="grid-title no-border">                                
+                        </div>
+                        <div class="grid-body no-border"> <br />
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <h:form id="form">
+                                        <p:dataTable scrollHeight="100" scrollable="true" scrollRows="2" value="#{mainBean.list}" var="user">
+                                            <p:column headerText="Name">
+                                                #{user.name}
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>                                                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <script src="https://gist.github.com/hatemalimam/9ea8b98e4cf47b261559.js"></script>
+        </ui:define>
+    </ui:composition>        
 </html>  
 
 

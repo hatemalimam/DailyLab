@@ -5,11 +5,8 @@
  */
 package com.ha.dailylab;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
@@ -35,6 +32,12 @@ public class LimitCheckboxMenuValidator implements Validator {
                             "Min selection must be " + minLimit);
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
+        } else {
+            FacesMessage msg
+                    = new FacesMessage("Limit sucess",
+                            "You Passed! you have selected " + minLimit + " or more");
+            msg.setSeverity(FacesMessage.SEVERITY_INFO);
+            context.addMessage("form:message", msg);
         }
 
     }

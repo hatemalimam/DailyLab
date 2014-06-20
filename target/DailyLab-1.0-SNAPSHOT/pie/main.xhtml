@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:h="http://java.sun.com/jsf/html"  
-      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:h="http://java.sun.com/jsf/html"          
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">  
+      xmlns:p="http://primefaces.org/ui">  
 
-    <h:head>  
-
-    </h:head>  
-
-    <h:body>  
-
-        <ui:composition template="/templates/default/main.xhtml">
-            <ui:define name="content">
-                <h:form id="form">
-                    <p:pieChart id="test" value="#{mainBean.pieModel1}" styleClass="unselectable" />
-                </h:form>
-                <h:outputScript library="js" name="checkBoxesJQuery.js" /> 
-            </ui:define>
-        </ui:composition>        
-    </h:body>  
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">
+            <style>
+                .unselectable {
+                    -webkit-touch-callout: none;
+                    -webkit-user-select: none;
+                    -khtml-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+            </style>
+            <div class="page-title">	
+                <h3>Unselectable Pie</h3>		
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <p:pieChart id="test" value="#{mainBean.pieModel1}" styleClass="unselectable" />                                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+            <script src="https://gist.github.com/hatemalimam/f21fc1e013648f121d44.js"></script>
+        </ui:define>
+    </ui:composition>        
 </html>  

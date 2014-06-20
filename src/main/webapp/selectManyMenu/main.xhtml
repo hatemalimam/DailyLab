@@ -1,72 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://java.sun.com/jsf/html"  
       xmlns:f="http://java.sun.com/jsf/core"  
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">  
+      xmlns:p="http://primefaces.org/ui">  
 
-    <h:head>  
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">
+            <div class="page-title">	
+                <h3>Max Selection (Javascript)</h3>		
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">  <p:outputLabel for="maxSelectionInput" value="Max selection size" /></label>                                                    
+                                            <div class="controls">
+                                                <p:inputText id="maxSelectionInput" label="max selection" widgetVar="maxSelection" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <p:selectManyMenu widgetVar="selectManyMenuWV" showCheckbox="true">  
+                                                    <f:selectItem itemLabel="Option 1" itemValue="1" />  
+                                                    <f:selectItem itemLabel="Option 2" itemValue="2" />  
+                                                    <f:selectItem itemLabel="Option 3" itemValue="3" />  
+                                                    <f:selectItem itemLabel="Option 4" itemValue="4" />  
+                                                    <f:selectItem itemLabel="Option 5" itemValue="5" />  
+                                                    <f:selectItem itemLabel="Option 6" itemValue="6" /> 
+                                                    <f:selectItem itemLabel="Option 7" itemValue="7" />  
+                                                    <f:selectItem itemLabel="Option 8" itemValue="8" />  
+                                                    <f:selectItem itemLabel="Option 9" itemValue="9" /> 
+                                                    <f:selectItem itemLabel="Option 10" itemValue="10" />  
+                                                    <f:selectItem itemLabel="Option 11" itemValue="11" />  
+                                                    <f:selectItem itemLabel="Option 12" itemValue="12" /> 
+                                                </p:selectManyMenu> 
+                                            </div>
+                                        </div>                                                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+            <script src="https://gist.github.com/hatemalimam/157f2e7469976e86ebd2.js"></script>
+            <script>
+                PF('maxSelection').jq.val(3);
+                $(function() {
+                    PF('selectManyMenuWV').items.on('click', function() {
+                        restrictMenu($(this).text())
+                    })
+                    PF('selectManyMenuWV').checkboxes.on('click', function() {
+                        restrictMenu($(this).parent().parent().text())
+                    })
+                });
 
-    </h:head>  
-
-    <h:body>  
-
-        <ui:composition template="/templates/default/main.xhtml">
-            <ui:define name="content">
-                <h:form id="form">
-                    <p:panelGrid columns="2">
-                        <p:outputLabel for="maxSelectionInput" value="Max selection size" />
-                        <p:inputText id="maxSelectionInput" label="max selection" widgetVar="maxSelection" />
-                        <p:selectManyMenu widgetVar="selectManyMenuWV" showCheckbox="true">  
-                            <f:selectItem itemLabel="Option 1" itemValue="1" />  
-                            <f:selectItem itemLabel="Option 2" itemValue="2" />  
-                            <f:selectItem itemLabel="Option 3" itemValue="3" />  
-                            <f:selectItem itemLabel="Option 4" itemValue="4" />  
-                            <f:selectItem itemLabel="Option 5" itemValue="5" />  
-                            <f:selectItem itemLabel="Option 6" itemValue="6" /> 
-                            <f:selectItem itemLabel="Option 7" itemValue="7" />  
-                            <f:selectItem itemLabel="Option 8" itemValue="8" />  
-                            <f:selectItem itemLabel="Option 9" itemValue="9" /> 
-                            <f:selectItem itemLabel="Option 10" itemValue="10" />  
-                            <f:selectItem itemLabel="Option 11" itemValue="11" />  
-                            <f:selectItem itemLabel="Option 12" itemValue="12" /> 
-                        </p:selectManyMenu> 
-                    </p:panelGrid>                                    
-                </h:form>
-                <script>
-                    PF('maxSelection').jq.val(3);
-                    $(function() {
-                        PF('selectManyMenuWV').items.on('click', function() { 
-                            restrictMenu($(this).text())
-                        })
-                        PF('selectManyMenuWV').checkboxes.on('click', function() {                                                       
-                            restrictMenu($(this).parent().parent().text())
-                        })
-                    });
-
-                    function restrictMenu(notValue) {
-                        //max selection size
-                        maxSelectionVar = PF('maxSelection').jq.val();
-                        if (maxSelectionVar.length != 0) {
-                            if (PF('selectManyMenuWV').input.find(':selected').length > maxSelectionVar) {
-                                PF('selectManyMenuWV').unselectItem(PF('selectManyMenuWV').items.filter(function() {    
-                                    if(PF('selectManyMenuWV').input.find(':selected').eq(0).text() != notValue)                                         
-                                        return $(this).text() == PF('selectManyMenuWV').input.find(':selected').eq(0).text();  
-                                    else
-                                        return $(this).text() == PF('selectManyMenuWV').input.find(':selected:last').text();
-                                }))
-                            }
+                function restrictMenu(notValue) {
+                    //max selection size
+                    maxSelectionVar = PF('maxSelection').jq.val();
+                    if (maxSelectionVar.length != 0) {
+                        if (PF('selectManyMenuWV').input.find(':selected').length > maxSelectionVar) {
+                            PF('selectManyMenuWV').unselectItem(PF('selectManyMenuWV').items.filter(function() {
+                                if (PF('selectManyMenuWV').input.find(':selected').eq(0).text() != notValue)
+                                    return $(this).text() == PF('selectManyMenuWV').input.find(':selected').eq(0).text();
+                                else
+                                    return $(this).text() == PF('selectManyMenuWV').input.find(':selected:last').text();
+                            }))
                         }
                     }
-                </script>
-            </ui:define>
-        </ui:composition>        
-    </h:body>  
+                }
+            </script>
+        </ui:define>
+    </ui:composition>         
 </html>  
