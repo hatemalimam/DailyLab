@@ -7,7 +7,6 @@
 
 $(document).ready(function() {
     setTimeout(fileUpload, 1000);
-
 })
 
 function fileUpload() {
@@ -46,7 +45,7 @@ function fileUpload() {
 
                     var row = $('<tr></tr>').append('<td class="ui-fileupload-preview"></td>')
                             .append('<td>' + file.name + '</td>')
-                            .append('<td class="title"><label>Title: <input name="title['+ file.name +']"></label></td>')
+                            .append('<td class="title"><label>Title: <input name="title['+ file.name +']"></label></td>') //the only modification we have to do
                             .append('<td>' + $this.formatSize(file.size) + '</td>')
                             .append('<td class="ui-fileupload-progress"></td>')
                             .append('<td><button class="ui-fileupload-cancel ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"><span class="ui-button-icon-left ui-icon ui-icon ui-icon-close"></span><span class="ui-button-text">ui-button</span></button></td>')

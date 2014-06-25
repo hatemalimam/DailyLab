@@ -39,15 +39,12 @@ public class MainBean implements Serializable {
 
     private List<String> selectedList;
 
-    private PieChartModel pieModel1;
-    
-    private StringBuffer message;
+    private PieChartModel pieModel1;    
 
     public MainBean() {
         currentNav = "/checkBoxesJQuery/main.xhtml";
         fillList();
-        createPieModel1();
-        message = new StringBuffer();
+        createPieModel1();        
     }
 
     public void updateNav() {
@@ -151,8 +148,8 @@ public class MainBean implements Serializable {
     public void handleFileUpload(FileUploadEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
         Map map = context.getExternalContext().getRequestParameterMap();
-        String nameme = "title["+event.getFile().getFileName()+"]";
-        String name1 = (String) map.get(nameme);
-        RequestContext.getCurrentInstance().execute("$('#result').append('"+ "File Name:" + event.getFile().getFileName() +" Title: " + name1+"<br />')");       
+        String paramName = "title["+event.getFile().getFileName()+"]";
+        String fileWithTitle = (String) map.get(paramName);
+        RequestContext.getCurrentInstance().execute("$('#result').append('"+ "<li> File Name: <span class=\"semi-bold\">" + event.getFile().getFileName() +"</span> Title: <span class=\"semi-bold\">" + fileWithTitle+"</span></li>')");       
     }
 }
