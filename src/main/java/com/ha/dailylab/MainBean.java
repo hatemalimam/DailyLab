@@ -14,6 +14,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.chart.PieChartModel;
 
 /**
@@ -38,11 +40,14 @@ public class MainBean implements Serializable {
     private List<String> selectedList;
 
     private PieChartModel pieModel1;
+    
+    private StringBuffer message;
 
     public MainBean() {
         currentNav = "/checkBoxesJQuery/main.xhtml";
         fillList();
         createPieModel1();
+        message = new StringBuffer();
     }
 
     public void updateNav() {
@@ -141,5 +146,13 @@ public class MainBean implements Serializable {
         String submitedValue = (String) map.get("submitedValue");
         FacesMessage facesMessage = new FacesMessage(submitedValue);
         facesContext.addMessage(null, facesMessage);
+    }
+
+    public void handleFileUpload(FileUploadEvent event) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map map = context.getExternalContext().getRequestParameterMap();
+        String nameme = "title["+event.getFile().getFileName()+"]";
+        String name1 = (String) map.get(nameme);
+        RequestContext.getCurrentInstance().execute("$('#result').append('"+ "File Name:" + event.getFile().getFileName() +" Title: " + name1+"<br />')");       
     }
 }
