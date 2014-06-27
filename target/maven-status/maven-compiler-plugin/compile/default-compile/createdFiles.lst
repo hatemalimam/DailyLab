@@ -3,3 +3,4 @@ com/ha/dailylab/UserPojo.class
 com/ha/dailylab/PickListConverter.class
 com/ha/dailylab/MainBean.class
 com/ha/dailylab/LimitCheckboxMenuValidator.class
+com/ha/dailylab/ExNavWizardRenderer.class

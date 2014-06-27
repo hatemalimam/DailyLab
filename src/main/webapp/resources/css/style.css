@@ -2094,7 +2094,7 @@ input[type="color"] {
   -webkit-appearance: none !important;   
 	color: #282323 
   outline: 0;
-  height: 16px;
+  /* height: 16px; */
   padding: 6px 11px !important;
   line-height: 15px;
   font-size: 13px;

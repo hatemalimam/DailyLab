@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">  
+
+    <h:head>  
+
+    </h:head>  
+
+    <h:body>  
+
+        <ui:composition template="/templates/default/main.xhtml">
+            <ui:define name="content">    
+                <h:outputStylesheet name="css/viewer.css" /> 
+                
+                <div class="col-md-12">
+                    <div class="grid simple">
+                        <div class="grid-title no-border">
+                            <h4>Select Text From the PDF and press <span class="semi-bold">CTRL</span></h4>                            
+                        </div>
+                        <div class="grid-body no-border">
+                            <p:inputTextarea id="inputTextArea" style="width:800px;" />
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="pdfZone">
+                    <ui:include src="viewer.xhtml" >
+                        <ui:param name="pdfURL" value="http://localhost:8080/DailyLab/pdfjs/pdf-sample.pdf" />                        
+                    </ui:include>
+                </div>                
+               
+                <script>                 
+                    $('.pdfZone').keydown(function(event) {
+                        if (event.which == "17"){
+                            $('#inputTextArea').text(window.getSelection().toString())
+                        }
+                           
+                    });                                       
+                </script>
+
+            </ui:define>
+        </ui:composition>        
+    </h:body>  
+</html>  
