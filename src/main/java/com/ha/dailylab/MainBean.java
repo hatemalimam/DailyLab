@@ -7,6 +7,7 @@ package com.ha.dailylab;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultScheduleEvent;
+import org.primefaces.model.DefaultScheduleModel;
+import org.primefaces.model.ScheduleModel;
 import org.primefaces.model.chart.PieChartModel;
 
 /**
@@ -39,14 +43,23 @@ public class MainBean implements Serializable {
 
     private List<String> selectedList;
 
-    private PieChartModel pieModel1;    
+    private PieChartModel pieModel1; 
+    
+    private ScheduleModel model;
 
     public MainBean() {
         currentNav = "/checkBoxesJQuery/main.xhtml";
         fillList();
-        createPieModel1();        
+        createPieModel1();  
+        
+        model = new DefaultScheduleModel();
+        model.addEvent(new DefaultScheduleEvent("Event1", new Date(), new Date()));
     }
 
+    public ScheduleModel getModel() {
+        return model;
+    }
+    
     public void updateNav() {
         FacesContext context = FacesContext.getCurrentInstance();
         Map map = context.getExternalContext().getRequestParameterMap();

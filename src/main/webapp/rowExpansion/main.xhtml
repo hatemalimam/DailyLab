@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <ui:composition template="/templates/default/main.xhtml">            
+        <ui:define name="content">            
+            <div class="page-title">	
+                <h3>Row Expansion</h3>		
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <div class="form-group">
+                                            <p:dataTable widgetVar="dataTableWV" value="#{mainBean.list}" var="user">
+                                                <p:column style="width:16px">
+                                                    <p:rowToggler />
+                                                </p:column>
+                                                <p:column headerText="Name">
+                                                    #{user.name}
+                                                </p:column>
+                                                <p:column headerText="Name">
+                                                    #{user.name}
+                                                </p:column>
+                                                <p:column headerText="Name">
+                                                    #{user.name}
+                                                </p:column>                                                
+                                                <p:rowExpansion>
+                                                    <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">                                                      
+                                                        <h:outputText value="Name" />
+                                                        <h:outputText value="#{user.name}" />
+                                                    </p:panelGrid>
+                                                </p:rowExpansion>
+                                            </p:dataTable>
+                                        </div>                                                                                                                                                   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </h:form>
+            <script src="https://gist.github.com/hatemalimam/fd52d8a91376597c0af1.js"></script>
+            <script>
+                function rowExpansion(dataTable) {
+                    var $this = dataTable;
+                    $this.tbody.children('tr').css('cursor', 'pointer')
+                    $this.tbody.off('click.datatable-expansion', '> tr')
+                            .on('click.datatable-expansion', '> tr', null, function() {
+                                $this.collapseAllRows();
+                                $this.toggleExpansion($(this).find('div.ui-row-toggler'));
+                            });
+                }
+                $(document).ready(function() {
+                    rowExpansion(PF('dataTableWV'));
+                });
+            </script>
+        </ui:define>
+    </ui:composition>         
+</html>  
+
+
