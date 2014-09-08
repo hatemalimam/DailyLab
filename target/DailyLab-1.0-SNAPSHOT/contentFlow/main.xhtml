@@ -1,0 +1,40 @@
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">  
+
+    <h:head>  
+
+    </h:head>  
+
+    <h:body>  
+
+        <ui:composition template="/templates/default/main.xhtml">
+            <ui:define name="content">
+                <h:form id="form">                     
+                    <p:contentFlow value="#{mainBean.batImages}" var="image">
+                        <p:graphicImage name="images/list/#{image}" styleClass="content" onclick="clickFlow(this, event)" />                        
+                    </p:contentFlow>              
+                </h:form>
+                <script>
+                    function clickFlow(item ,e) {                                                                       
+                        if ($(item).parent().hasClass('active')) {
+                            e.stopImmediatePropagation();                                                      
+                        }
+                    }
+                </script>
+                
+                <script src="https://gist.github.com/hatemalimam/9fd9cbae844295172cb9.js"></script>
+            </ui:define>
+        </ui:composition>        
+    </h:body>  
+</html>  

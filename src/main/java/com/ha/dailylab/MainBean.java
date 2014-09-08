@@ -47,6 +47,8 @@ public class MainBean implements Serializable {
     
     private ScheduleModel model;
 
+    private List<String> batImages;
+    
     public MainBean() {
         currentNav = "/checkBoxesJQuery/main.xhtml";
         fillList();
@@ -54,6 +56,11 @@ public class MainBean implements Serializable {
         
         model = new DefaultScheduleModel();
         model.addEvent(new DefaultScheduleEvent("Event1", new Date(), new Date()));
+        
+        batImages = new ArrayList<String>();
+        for (int i = 1; i <= 5; i++) {
+            batImages.add("bat" + i + ".jpg");
+        }
     }
 
     public ScheduleModel getModel() {
@@ -140,6 +147,15 @@ public class MainBean implements Serializable {
         this.pieModel1 = pieModel1;
     }
 
+    public List<String> getBatImages() {
+        return batImages;
+    }
+
+    public void setBatImages(List<String> batImages) {
+        this.batImages = batImages;
+    }
+        
+
     private void createPieModel1() {
         pieModel1 = new PieChartModel();
 
@@ -164,5 +180,17 @@ public class MainBean implements Serializable {
         String paramName = "title["+event.getFile().getFileName()+"]";
         String fileWithTitle = (String) map.get(paramName);
         RequestContext.getCurrentInstance().execute("$('#result').append('"+ "<li> File Name: <span class=\"semi-bold\">" + event.getFile().getFileName() +"</span> Title: <span class=\"semi-bold\">" + fileWithTitle+"</span></li>')");       
+    }
+    
+    public void addMessage(String message, String to) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();        
+        FacesMessage facesMessage = new FacesMessage(message);
+        facesContext.addMessage(to, facesMessage);
+    }
+    
+    public void addMessage(String message) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();        
+        FacesMessage facesMessage = new FacesMessage(message);
+        facesContext.addMessage(null, facesMessage);
     }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <ui:composition template="/templates/default/main.xhtml">            
+        <ui:define name="content">     
+            <style>
+
+            </style>
+            <div class="page-title">	
+                <h3>Frozen Table Width Style</h3>		
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <div class="form-group">
+                                            <p:inplace editor="true" label="Text">
+                                                <p:inputText/>
+                                            </p:inplace><br/><br/><br/>
+
+                                            <p:inplace id="textArea" editor="true" label="TextArea">
+                                                <p:inputTextarea/>
+                                            </p:inplace><br/><br/><br/>
+
+                                            <p:inplace id="list" editor="true" label="List">
+                                                <p:selectOneMenu>
+                                                    <f:selectItem itemLabel="List Item 1"/>
+                                                    <f:selectItem itemLabel="List Item 2"/>
+                                                    <f:selectItem itemLabel="List Item 3"/>
+                                                </p:selectOneMenu>
+                                            </p:inplace>
+
+                                            <p:inputText id="text"  required="true"/>  
+
+                                            <p:tooltip  for="text" widgetVar="tool">
+                                                <p:message id="message" for="text"/>
+                                            </p:tooltip>
+
+                                            <p:commandButton actionListener="#{mainBean.addMessage('Message is here', 'form:text')}" value="add text" update="message" ></p:commandButton>
+                                            ui-tooltip.ui-message
+                                        </div>                                                                                                                                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </h:form>            
+
+        </ui:define>
+    </ui:composition>         
+</html>  
+
+
