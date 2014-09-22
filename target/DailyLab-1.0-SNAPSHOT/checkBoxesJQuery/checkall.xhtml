@@ -53,6 +53,13 @@
 
                                                     function selectAllCheckBoxes(manyCheckBoxes) {
                                                        manyCheckBoxes.inputs.each(function() {
+                                                           if(PrimeFaces.widgets.checkAll.isChecked()) {
+                                                               $(this).prop('checked', false)
+                                                               PrimeFaces.widgets.checkAll.jq.find('.ui-chkbox-label').text('Uncheck all')
+                                                           } else {
+                                                               $(this).prop('checked', true)
+                                                               PrimeFaces.widgets.checkAll.jq.find('.ui-chkbox-label').text('Check all')
+                                                           }
                                                             $(this).trigger('click');
                                                         })
                                                     }
