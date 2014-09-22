@@ -51,9 +51,24 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-                
+
                 <script src="https://gist.github.com/hatemalimam/71b2e252f019fecc8fcb.js"></script>
             </h:form>
+
+            <p:layout style="min-width:400px;min-height:500px;">
+                <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200" styleClass="dodo">
+                    West
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    Center
+                </p:layoutUnit>
+            </p:layout>
+            <style>
+                .dodo {
+                    height: 100px !important;
+                }
+            </style>
             <script>
                 //<![CDATA[
                 $(document).ready(function() {

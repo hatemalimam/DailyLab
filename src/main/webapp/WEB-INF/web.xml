@@ -75,4 +75,14 @@
         <mime-type>image/x-icon</mime-type>
     </mime-mapping>
     
+    <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6LenE_oSAAAAACW_DhxPv4NOz7dEChm5fGYw-zWH</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+        <param-value>6LenE_oSAAAAAA2fygyine4plNvylBEK34_YZQAn</param-value>
+    </context-param>
+    
 </web-app>
