@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">
+            <div class="page-title">	
+                <h3>Dialog</h3>		
+            </div>
+            <h:form>               
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <p:commandLink onclick="PF('dialog1').show()">button 1</p:commandLink><br/>
+                                        <p:commandLink onclick="PF('dialog2').show()">button 2</p:commandLink><br/>
+                                        <p:commandLink onclick="PF('dialog3').show()">button 3</p:commandLink><br/>                                        
+
+                                        <p:dialog id="dialog1"
+                                                  header="dialog 1"
+                                                  resizable="true" 
+                                                  dynamic="false" 
+                                                  modal="false" 
+                                                  draggable="true" 
+                                                  widgetVar="dialog1"
+                                                  minimizable="true" 
+                                                  maximizable="true">
+                                            dialog1
+                                        </p:dialog>
+                                        <p:dialog id="dialog2"
+                                                  header="dialog 2"
+                                                  resizable="true" 
+                                                  dynamic="false" 
+                                                  modal="false" 
+                                                  draggable="true" 
+                                                  widgetVar="dialog2"
+                                                  minimizable="true" 
+                                                  maximizable="true">
+                                            dialog2
+                                        </p:dialog>
+                                        <p:dialog id="dialog3"
+                                                  header="dialog 3"
+                                                  resizable="true" 
+                                                  dynamic="false" 
+                                                  modal="false" 
+                                                  draggable="true" 
+                                                  widgetVar="dialog3"
+                                                  minimizable="true" 
+                                                  maximizable="true">
+                                            dialog3
+                                        </p:dialog>  
+                                        <p:remoteCommand name="activeDialog" actionListener="#{mainBean.activeDialog}" />
+                                        <p:growl autoUpdate="true"></p:growl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </h:form>
+
+            <script>
+                //<![CDATA[
+                $(document).ready(function() {
+                     $('.ui-dialog').on('click dragstop',function () {
+                         console.log($(this).attr('id'))
+                        activeDialog([{name: 'activeDialog', value: $(this).attr('id')}]);
+                     })
+                });
+
+                //]]>
+            </script>
+        </ui:define>
+    </ui:composition>        
+</html>  

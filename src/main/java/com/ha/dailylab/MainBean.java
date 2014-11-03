@@ -15,6 +15,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.config.ConfigContainer;
+import org.primefaces.config.StartupConfigContainer;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultScheduleEvent;
@@ -49,6 +51,8 @@ public class MainBean implements Serializable {
 
     private List<String> batImages;
     
+    private String pfVersion;
+    
     public MainBean() {
         currentNav = "/checkBoxesJQuery/main.xhtml";
         fillList();
@@ -61,6 +65,9 @@ public class MainBean implements Serializable {
         for (int i = 1; i <= 5; i++) {
             batImages.add("bat" + i + ".jpg");
         }
+        
+        ConfigContainer config = new StartupConfigContainer(FacesContext.getCurrentInstance());
+        pfVersion = RequestContext.getCurrentInstance().getApplicationContext().getConfig().getBuildVersion();
     }
 
     public ScheduleModel getModel() {
@@ -166,6 +173,16 @@ public class MainBean implements Serializable {
 
     }
 
+    public String getPfVersion() {
+        return pfVersion;
+    }
+
+    public void setPfVersion(String pfVersion) {
+        this.pfVersion = pfVersion;
+    }
+    
+    
+
     public void sendLastCheckedBox() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         Map map = facesContext.getExternalContext().getRequestParameterMap();
@@ -191,6 +208,14 @@ public class MainBean implements Serializable {
     public void addMessage(String message) {
         FacesContext facesContext = FacesContext.getCurrentInstance();        
         FacesMessage facesMessage = new FacesMessage(message);
+        facesContext.addMessage(null, facesMessage);
+    }
+    
+    public void activeDialog() {
+         FacesContext facesContext = FacesContext.getCurrentInstance();
+        Map map = facesContext.getExternalContext().getRequestParameterMap();
+        String submitedValue = (String) map.get("activeDialog");
+        FacesMessage facesMessage = new FacesMessage(submitedValue);
         facesContext.addMessage(null, facesMessage);
     }
 }

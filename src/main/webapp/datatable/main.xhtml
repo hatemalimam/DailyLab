@@ -47,7 +47,25 @@
                                 <div class="col-md-8 col-sm-8 col-xs-8">
                                     <h:form id="form">
                                         <p:dataTable scrollHeight="100" scrollable="true" scrollRows="2" value="#{mainBean.list}" var="user">
-                                            <p:column headerText="Name">
+                                            <p:column filterBy="#{user.name}" headerText="Name" styleClass="test">
+                                                <f:facet name="filter">
+                                                    <p:selectCheckboxMenu label="Colors"  panelStyle="width:125px" scrollHeight="150">
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        <f:selectItem itemLabel="test" itemValue="test" />
+                                                        
+                                                    </p:selectCheckboxMenu>
+                                                </f:facet>
                                                 #{user.name}
                                             </p:column>
                                         </p:dataTable>
