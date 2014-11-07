@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content"> 
+            <style>
+                .ui-spinner-input {
+                    margin-right: 20px !important;
+                }                
+
+            </style>
+            
+            
+            <h:outputScript name="js/pf.spinner.local.fix.js" />
+            
+            
+            <div class="page-title">	
+                <h3>Spinner</h3>		
+            </div>
+
+            <h:form>               
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <div class="form-group">
+                                            <label class="form-label">Spinner</label>
+                                            <span class="help">Local is set to de-DE</span>
+                                            <div class="controls">                                               
+                                                <p:spinner widgetVar="spinner" stepFactor="0.1" size="5"  >
+                                                    <f:convertNumber pattern="#0.00" locale="de_DE"/>
+                                                </p:spinner>
+                                            </div>
+                                        </div>                                                                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </h:form>
+
+            <script src="https://gist.github.com/hatemalimam/86ac51faa38569cad204.js"></script>
+
+            <script>
+                //<![CDATA[
+                $(document).ready(function() {
+                    PF('spinner').cfg['local'] = 'de-DE';
+                });
+                //]]>
+            </script>
+        </ui:define>
+    </ui:composition>        
+</html>  

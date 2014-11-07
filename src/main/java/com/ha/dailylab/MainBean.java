@@ -53,10 +53,14 @@ public class MainBean implements Serializable {
     
     private String pfVersion;
     
+    private Double doubleValue;
+    
     public MainBean() {
         currentNav = "/checkBoxesJQuery/main.xhtml";
         fillList();
         createPieModel1();  
+        
+        doubleValue = 2d;
         
         model = new DefaultScheduleModel();
         model.addEvent(new DefaultScheduleEvent("Event1", new Date(), new Date()));
@@ -161,6 +165,16 @@ public class MainBean implements Serializable {
     public void setBatImages(List<String> batImages) {
         this.batImages = batImages;
     }
+
+    public Double getDoubleValue() {
+        return doubleValue;
+    }
+
+    public void setDoubleValue(Double doubleValue) {
+        this.doubleValue = doubleValue;
+    }
+    
+    
         
 
     private void createPieModel1() {
@@ -196,6 +210,7 @@ public class MainBean implements Serializable {
         Map map = context.getExternalContext().getRequestParameterMap();
         String paramName = "title["+event.getFile().getFileName()+"]";
         String fileWithTitle = (String) map.get(paramName);
+        fileWithTitle = (fileWithTitle == null)? "not found":"";
         RequestContext.getCurrentInstance().execute("$('#result').append('"+ "<li> File Name: <span class=\"semi-bold\">" + event.getFile().getFileName() +"</span> Title: <span class=\"semi-bold\">" + fileWithTitle+"</span></li>')");       
     }
     
