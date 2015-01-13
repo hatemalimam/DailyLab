@@ -40,7 +40,8 @@ and open the template in the editor.
                                         <div class="form-group">
                                             <label class="form-label">Spinner</label>
                                             <span class="help">Local is set to de-DE</span>
-                                            <div class="controls">                                               
+                                            <div class="controls"> 
+                                                <p:autoComplete multiple="true" completeMethod="#{mainBean.completeText}"></p:autoComplete>
                                                 <p:spinner widgetVar="spinner" stepFactor="0.1" size="5"  >
                                                     <f:convertNumber pattern="#0.00" locale="de_DE"/>
                                                 </p:spinner>

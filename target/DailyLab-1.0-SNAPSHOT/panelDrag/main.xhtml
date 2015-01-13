@@ -1,0 +1,58 @@
+ 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions" template="/templates/default/main.xhtml">
+    <ui:define name="content">
+        <p:growl autoUpdate="true"></p:growl>
+        <h:form id="form">
+            <p:panel id="draggable1" 
+                     style="z-index:1; width: 60px; height: 60px;"
+                     >
+                <h:outputText value="CAM-1" />
+                <p:draggable for="draggable1" 
+                             revert ="false" 
+                             />
+            </p:panel>
+
+            <p:panel id="droppable" 
+                     style="z-index:1; width: 600px; height: 600px;"
+                     >
+                <p:droppable widgetVar="dropWV" for="droppable"> 
+                    <p:ajax listener="#{mainBean.onDrop}" />
+                </p:droppable>
+            </p:panel>          
+        </h:form>
+        <script>
+            //<![CDATA[
+            PrimeFaces.widget.Droppable.prototype.bindDropListener = function() {
+                var _self = this;
+
+                this.cfg.drop = function(event, ui) {
+                    if (_self.cfg.onDrop) {
+                        _self.cfg.onDrop.call(_self, event, ui);
+                    }
+                    if (_self.cfg.behaviors) {
+                        var dropBehavior = _self.cfg.behaviors['drop'];
+
+                        if (dropBehavior) {
+                            var ext = {
+                                params: [
+                                    {name: _self.id + '_dragId', value: ui.draggable.attr('id')},
+                                    {name: _self.id + '_dropId', value: _self.cfg.target},
+                                    {name: ui.draggable.attr('id') + '_left', value: ui.position.left},
+                                    {name: ui.draggable.attr('id') + '_top', value: ui.position.top}
+                                ]
+                            };
+                            console.log(ui);
+                            dropBehavior.call(_self, ext);
+                        }
+                    }
+                };
+            }
+            // ]]>
+        </script>
+    </ui:define>
+</ui:composition>        

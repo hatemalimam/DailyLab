@@ -14,10 +14,13 @@ import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import org.primefaces.component.panel.Panel;
 import org.primefaces.config.ConfigContainer;
 import org.primefaces.config.StartupConfigContainer;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.DragDropEvent;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
@@ -45,31 +48,31 @@ public class MainBean implements Serializable {
 
     private List<String> selectedList;
 
-    private PieChartModel pieModel1; 
-    
+    private PieChartModel pieModel1;
+
     private ScheduleModel model;
 
     private List<String> batImages;
-    
+
     private String pfVersion;
-    
+
     private Double doubleValue;
-    
+
     public MainBean() {
         currentNav = "/checkBoxesJQuery/main.xhtml";
         fillList();
-        createPieModel1();  
-        
+        createPieModel1();
+
         doubleValue = 2d;
-        
+
         model = new DefaultScheduleModel();
         model.addEvent(new DefaultScheduleEvent("Event1", new Date(), new Date()));
-        
+
         batImages = new ArrayList<String>();
         for (int i = 1; i <= 5; i++) {
             batImages.add("bat" + i + ".jpg");
         }
-        
+
         ConfigContainer config = new StartupConfigContainer(FacesContext.getCurrentInstance());
         pfVersion = RequestContext.getCurrentInstance().getApplicationContext().getConfig().getBuildVersion();
     }
@@ -77,7 +80,7 @@ public class MainBean implements Serializable {
     public ScheduleModel getModel() {
         return model;
     }
-    
+
     public void updateNav() {
         FacesContext context = FacesContext.getCurrentInstance();
         Map map = context.getExternalContext().getRequestParameterMap();
@@ -124,6 +127,15 @@ public class MainBean implements Serializable {
         map.put("Dummu", "Dummu");
         map.put("Stakr", "Stakr");
         map.put("Simi", "Simi");
+    }
+
+    public List<String> completeText(String query) {
+        List<String> results = new ArrayList<String>();
+        for (int i = 0; i < 10; i++) {
+            results.add(query + i);
+        }
+
+        return results;
     }
 
     public String getSelectedTextInArea() {
@@ -173,9 +185,6 @@ public class MainBean implements Serializable {
     public void setDoubleValue(Double doubleValue) {
         this.doubleValue = doubleValue;
     }
-    
-    
-        
 
     private void createPieModel1() {
         pieModel1 = new PieChartModel();
@@ -194,8 +203,6 @@ public class MainBean implements Serializable {
     public void setPfVersion(String pfVersion) {
         this.pfVersion = pfVersion;
     }
-    
-    
 
     public void sendLastCheckedBox() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -208,29 +215,37 @@ public class MainBean implements Serializable {
     public void handleFileUpload(FileUploadEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
         Map map = context.getExternalContext().getRequestParameterMap();
-        String paramName = "title["+event.getFile().getFileName()+"]";
+        String paramName = "title[" + event.getFile().getFileName() + "]";
         String fileWithTitle = (String) map.get(paramName);
-        fileWithTitle = (fileWithTitle == null)? "not found":"";
-        RequestContext.getCurrentInstance().execute("$('#result').append('"+ "<li> File Name: <span class=\"semi-bold\">" + event.getFile().getFileName() +"</span> Title: <span class=\"semi-bold\">" + fileWithTitle+"</span></li>')");       
+        fileWithTitle = (fileWithTitle == null) ? "not found" : "";
+        RequestContext.getCurrentInstance().execute("$('#result').append('" + "<li> File Name: <span class=\"semi-bold\">" + event.getFile().getFileName() + "</span> Title: <span class=\"semi-bold\">" + fileWithTitle + "</span></li>')");
     }
-    
+
     public void addMessage(String message, String to) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();        
+        FacesContext facesContext = FacesContext.getCurrentInstance();
         FacesMessage facesMessage = new FacesMessage(message);
         facesContext.addMessage(to, facesMessage);
     }
-    
+
     public void addMessage(String message) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();        
+        FacesContext facesContext = FacesContext.getCurrentInstance();
         FacesMessage facesMessage = new FacesMessage(message);
         facesContext.addMessage(null, facesMessage);
     }
-    
+
     public void activeDialog() {
-         FacesContext facesContext = FacesContext.getCurrentInstance();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
         Map map = facesContext.getExternalContext().getRequestParameterMap();
         String submitedValue = (String) map.get("activeDialog");
         FacesMessage facesMessage = new FacesMessage(submitedValue);
         facesContext.addMessage(null, facesMessage);
+    }
+
+    public void onDrop(DragDropEvent dragDropEvent) {
+        String dargId = dragDropEvent.getDragId();
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String left = params.get(dargId + "_left");
+        String top = params.get(dargId + "_top");
+        addMessage("Left: " + left + " Top: " + top);
     }
 }
