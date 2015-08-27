@@ -1,48 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:h="http://java.sun.com/jsf/html"  
-      xmlns:f="http://java.sun.com/jsf/core"  
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">  
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/default/main.xhtml">            
+    <ui:define name="content">
+        <h:form enctype="multipart/form-data">
 
+            <div class="col-md-12">
+                <div class="grid simple">
+                    <div class="grid-title no-border">
+                        <h4>Max Size<span class="semi-bold">100KB</span> Image</h4>                            
+                    </div>
+                    <div class="grid-body no-border">
+                        <p:fileUpload fileUploadListener="#{mainBean.handleFileUpload}" widgetVar="fileUpload"
+                                      sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                    </div>
+                </div> 
+            </div>
 
-    <ui:composition template="/templates/default/main.xhtml">            
-        <ui:define name="content">
-            <h:form enctype="multipart/form-data">
+            <div class="col-md-12">
+                <div class="grid simple">
+                    <div class="grid-title no-border">
+                        <h4>Uploaded <span class="semi-bold">Files</span></h4>                            
+                    </div>
+                    <div class="grid-body no-border">
+                        <ul id="result">                                
+                        </ul>	
+                    </div>
+                </div> 
+            </div>
+        </h:form>
+        <script src="https://gist.github.com/hatemalimam/c42517b893f1c9533710.js"></script>
+        <script src="https://gist.github.com/hatemalimam/1cfc47eac7e3c5fd26e5.js"></script>
+        <script src="https://gist.github.com/hatemalimam/b479a826917776c69131.js"></script>
+        <h:outputScript name="js/fileUpload.js" />
 
-                <div class="col-md-12">
-                    <div class="grid simple">
-                        <div class="grid-title no-border">
-                            <h4>Max Size<span class="semi-bold">100KB</span> Image</h4>                            
-                        </div>
-                        <div class="grid-body no-border">
-                            <p:fileUpload fileUploadListener="#{mainBean.handleFileUpload}" widgetVar="fileUpload"
-                                          sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-                        </div>
-                    </div> 
-                </div>
+    </ui:define>
+</ui:composition>        
 
-                <div class="col-md-12">
-                    <div class="grid simple">
-                        <div class="grid-title no-border">
-                            <h4>Uploaded <span class="semi-bold">Files</span></h4>                            
-                        </div>
-                        <div class="grid-body no-border">
-                            <ul id="result">                                
-                            </ul>	
-                        </div>
-                    </div> 
-                </div>
-            </h:form>
-            <script src="https://gist.github.com/hatemalimam/c42517b893f1c9533710.js"></script>
-            <script src="https://gist.github.com/hatemalimam/1cfc47eac7e3c5fd26e5.js"></script>
-            <script src="https://gist.github.com/hatemalimam/b479a826917776c69131.js"></script>
-            <h:outputScript name="js/fileUpload.js" />
-
-        </ui:define>
-    </ui:composition>        
-</html>  
 
 

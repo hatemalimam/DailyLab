@@ -1,67 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:h="http://java.sun.com/jsf/html"  
-      xmlns:f="http://java.sun.com/jsf/core"  
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">  
 
-    <ui:composition template="/templates/default/main.xhtml">            
-        <ui:define name="content">
-            <style>
-                /* Change forzen width */
-                .ui-datatable-frozenlayout-left {
-                    width: 20%;
-                }
-            </style>
-             <div class="page-title">	
-                <h3>Frozen Table Width Style</h3>		
-            </div>
-            <h:form id="form">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="grid simple">
-                            <div class="grid-title no-border">                                
-                            </div>
-                            <div class="grid-body no-border"> <br />
-                                <div class="row">
-                                    <div class="col-md-8 col-sm-8 col-xs-8">
-                                        <div class="form-group">
-                                            <p:dataTable value="#{mainBean.list}" var="user" frozenColumns="1"
-                                                         scrollable="true" scrollHeight="150" scrollWidth="300">
-                                                <p:column headerText="Name">
-                                                    #{user.name}
-                                                </p:column>
-                                                <p:column headerText="Name">
-                                                    #{user.name}
-                                                </p:column>
-                                                <p:column headerText="Name">
-                                                    #{user.name}
-                                                </p:column>
-                                            </p:dataTable>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label"><p:outputLabel value="Slide to change width" for="slider" /></label>                                                    
-                                            <div class="controls">                                                
-                                                <h:inputHidden id="sliderInput"  />
-                                                <p:slider id="slider" for="sliderInput" style="width: 200px" onSlide="slideColumn(this)" minValue="10" maxValue="70"  />
-                                            </div>
-                                        </div>                                                                                                            
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/default/main.xhtml">            
+    <ui:define name="content">
+        <style>
+            /* Change forzen width */
+            .ui-datatable-frozenlayout-left {
+                width: 20%;
+            }
+        </style>
+        <div class="page-title">	
+            <h3>Frozen Table Width Style</h3>		
+        </div>
+        <h:form id="form">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="grid simple">
+                        <div class="grid-title no-border">                                
+                        </div>
+                        <div class="grid-body no-border"> <br />
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="form-group">
+                                        <p:dataTable value="#{mainBean.list}" var="user" frozenColumns="1"
+                                                     scrollable="true" scrollHeight="150" scrollWidth="300">
+                                            <p:column headerText="Name">
+                                                #{user.name}
+                                            </p:column>
+                                            <p:column headerText="Name">
+                                                #{user.name}
+                                            </p:column>
+                                            <p:column headerText="Name">
+                                                #{user.name}
+                                            </p:column>
+                                        </p:dataTable>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="form-label"><p:outputLabel value="Slide to change width" for="slider" /></label>                                                    
+                                        <div class="controls">                                                
+                                            <h:inputHidden id="sliderInput"  />
+                                            <p:slider id="slider" for="sliderInput" style="width: 200px" onSlide="slideColumn(this)" minValue="10" maxValue="70"  />
+                                        </div>
+                                    </div>                                                                                                            
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> 
-            </h:form>
-            <script src="https://gist.github.com/hatemalimam/e101b951db27335c63a9.js"></script>
-            <script>
-                function slideColumn(comp) {
-                    $('.ui-datatable-frozenlayout-left').css("width", comp.input.val() + "%");
-                }
-            </script>
-        </ui:define>
-    </ui:composition>         
-</html>  
+                </div>
+            </div> 
+        </h:form>
+        <script src="https://gist.github.com/hatemalimam/e101b951db27335c63a9.js"></script>
+        <script>
+            function slideColumn(comp) {
+                $('.ui-datatable-frozenlayout-left').css("width", comp.input.val() + "%");
+            }
+        </script>
+    </ui:define>
+</ui:composition>         
+
 
 

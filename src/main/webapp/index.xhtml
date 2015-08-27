@@ -1,48 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:h="http://java.sun.com/jsf/html"  
-      xmlns:f="http://java.sun.com/jsf/core"  
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions"
-      >  
 
-    <h:body>  
 
-        <ui:composition template="/templates/default/main.xhtml">
-            <ui:define name="content">
-                <style>
-                    .content, footer-widget {
-                        background: #000;
-                    }
-                    .page-content {
-                        background-color: #000;
-                    }
-                    .container {
-                        padding-right: 15px;
-                        padding-left: 15px;
-                        margin-right: auto;
-                        margin-left: auto;
-                    }
-                </style>
-                <div class="container">
-                    <div class="row login-container animated fadeInUpBig">  
-                        <div class="col-md-7 col-md-offset-2 tiles black no-padding">
-                            <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10"> 
-                                <img src="#{resource['images/CONQUER.png']}"  alt="" data-src="#{resource['images/CONQUER.png']}" data-src-retina="#{resource['images/CONQUER.png']}" />
-                            </div>                          
-                        </div>   
-                    </div>
-                </div>
-               
-            </ui:define>
-        </ui:composition>        
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions" template="/WEB-INF/templates/default/main.xhtml">
+    <ui:define name="content">
+        <style>
+            .content, footer-widget {
+                background: #000;
+            }
+            .page-content {
+                background-color: #000;
+            }
+            .container {
+                padding-right: 15px;
+                padding-left: 15px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        </style>
+        <div class="container">
+            <div class="row login-container animated fadeInUpBig">  
+                <div class="col-md-7 col-md-offset-2 tiles black no-padding">
+                    <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10"> 
+                        <img src="#{resource['images/CONQUER.png']}"  alt="" data-src="#{resource['images/CONQUER.png']}" data-src-retina="#{resource['images/CONQUER.png']}" />
+                    </div>                          
+                </div>   
+            </div>
+        </div>
 
-    </h:body>  
-</html>  
+    </ui:define>
+</ui:composition>        

@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/default/main.xhtml">            
+    <ui:define name="content">            
+        <div class="page-title">	
+            <h3>Row Selection</h3>		
+        </div>
+        <h:form id="form">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="grid simple">
+                        <div class="grid-title no-border">                                
+                        </div>
+                        <div class="grid-body no-border"> <br />
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="form-group">                                            
+                                        <p:dataTable value="#{mainBean.list}" 
+                                                     selectionMode="single"
+                                                     selection="#{mainBean.userPojo}"
+                                                     var="user" rowKey="#{user.id}" widgetVar="dataTableWV">
+                                            <p:ajax event="rowSelect"
+                                                    onstart="console.log(PF('dataTableWV').selection[0])"/>
+                                            <p:column>
+                                                <h:outputText value="#{user.name}" />
+                                            </p:column>
+                                        </p:dataTable>
+                                    </div>                                                                                                                                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </h:form>                       
+    </ui:define>
+</ui:composition>         
+
+

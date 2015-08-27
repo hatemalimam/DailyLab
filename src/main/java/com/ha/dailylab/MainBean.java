@@ -58,6 +58,8 @@ public class MainBean implements Serializable {
 
     private Double doubleValue;
 
+    private UserPojo userPojo;
+
     public MainBean() {
         currentNav = "/checkBoxesJQuery/main.xhtml";
         fillList();
@@ -77,6 +79,14 @@ public class MainBean implements Serializable {
         pfVersion = RequestContext.getCurrentInstance().getApplicationContext().getConfig().getBuildVersion();
     }
 
+    public UserPojo getUserPojo() {
+        return userPojo;
+    }
+
+    public void setUserPojo(UserPojo userPojo) {
+        this.userPojo = userPojo;
+    }
+        
     public ScheduleModel getModel() {
         return model;
     }
@@ -111,13 +121,13 @@ public class MainBean implements Serializable {
 
     public void fillList() {
         list = new ArrayList<UserPojo>();
-        list.add(new UserPojo("Jack"));
-        list.add(new UserPojo("Jhon"));
-        list.add(new UserPojo("Smack"));
-        list.add(new UserPojo("Jimmy"));
-        list.add(new UserPojo("Dummu"));
-        list.add(new UserPojo("Stakr"));
-        list.add(new UserPojo("Simi"));
+        list.add(new UserPojo("Jack", 10));
+        list.add(new UserPojo("Jhon", 20));
+        list.add(new UserPojo("Smack", 30));
+        list.add(new UserPojo("Jimmy", 40));
+        list.add(new UserPojo("Dummu", 50));
+        list.add(new UserPojo("Stakr", 60));
+        list.add(new UserPojo("Simi", 70));
 
         map = new HashMap<String, String>();
         map.put("Jack", "Jack");
@@ -247,5 +257,9 @@ public class MainBean implements Serializable {
         String left = params.get(dargId + "_left");
         String top = params.get(dargId + "_top");
         addMessage("Left: " + left + " Top: " + top);
+    }
+    
+    public void deleteUser(UserPojo user) {
+        list.remove(user);
     }
 }

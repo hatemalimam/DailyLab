@@ -1,58 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:h="http://java.sun.com/jsf/html"  
-      xmlns:f="http://java.sun.com/jsf/core"  
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions">   
-
-    <ui:composition template="/templates/default/main.xhtml">
-        <ui:define name="content">               
-            <div class="page-title">	
-                <h3>Enable Button Based on CheckBox</h3>		
-            </div>
-            <h:form>               
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="grid simple">
-                            <div class="grid-title no-border">                                
-                            </div>
-                            <div class="grid-body no-border"> <br />
-                                <div class="row">
-                                    <div class="col-md-8 col-sm-8 col-xs-8">
-                                        <div class="form-group">
-                                            <label class="form-label">Accept Terms</label>                                                    
-                                            <div class="controls">
-                                                <p:selectBooleanCheckbox widgetVar="selectWV"/>
-                                            </div>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/default/main.xhtml">
+    <ui:define name="content">               
+        <div class="page-title">	
+            <h3>Enable Button Based on CheckBox</h3>		
+        </div>
+        <h:form>               
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="grid simple">
+                        <div class="grid-title no-border">                                
+                        </div>
+                        <div class="grid-body no-border"> <br />
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="form-group">
+                                        <label class="form-label">Accept Terms</label>                                                    
+                                        <div class="controls">
+                                            <p:selectBooleanCheckbox widgetVar="selectWV"/>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <p:commandButton value="Register" widgetVar="buttonWV"/>   
-                                            </div>
-                                        </div>                                                                    
                                     </div>
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            <p:commandButton value="Register" widgetVar="buttonWV"/>   
+                                        </div>
+                                    </div>                                                                    
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>                        
-            </h:form>
-            <script src="https://gist.github.com/hatemalimam/0de083b3038eeffb4dbf.js"></script>
-            <script>
-                $(function() {
-                    PF('buttonWV').disable();
-                    PF('selectWV').jq.change(function() {
-                        if (PF('selectWV').isChecked()) {
-                            PF('buttonWV').enable();
-                        } else {
-                            PF('buttonWV').disable();
-                        }
-                    })
+                </div>
+            </div>                        
+        </h:form>
+        <script src="https://gist.github.com/hatemalimam/0de083b3038eeffb4dbf.js"></script>
+        <script>
+            $(function() {
+                PF('buttonWV').disable();
+                PF('selectWV').jq.change(function() {
+                    if (PF('selectWV').isChecked()) {
+                        PF('buttonWV').enable();
+                    } else {
+                        PF('buttonWV').disable();
+                    }
                 })
-            </script>
-        </ui:define>
-    </ui:composition>         
-</html>  
+            })
+        </script>
+    </ui:define>
+</ui:composition>         
+

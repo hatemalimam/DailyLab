@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/default/main.xhtml">            
+    <ui:define name="content">
+        <h:form enctype="multipart/form-data">
+
+            <div class="col-md-12">
+                <div class="grid simple">
+                    <div class="grid-title no-border">
+                        <h4>Max Size<span class="semi-bold">100KB</span> Image</h4>                            
+                    </div>
+                    <div class="grid-body no-border">
+                        <p:fileUpload fileUploadListener="#{mainBean.handleFileUpload}" widgetVar="fileUploadWV"
+                                      sizeLimit="100000"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                    </div>
+                </div> 
+            </div>
+
+            <div class="col-md-12">
+                <div class="grid simple">
+                    <div class="grid-title no-border">
+                        <h4>Uploaded <span class="semi-bold">Files</span></h4>                            
+                    </div>
+                    <div class="grid-body no-border">
+                        <ul id="result">                                
+                        </ul>	
+                    </div>
+                </div> 
+            </div>
+        </h:form>
+        <script>
+            $(function() {
+                // setTimeout waits till the widgetVar is ready!
+                setTimeout(sortFileUpload, 2000);
+            });
+
+            function sortFileUpload() {
+                //Set this option to true to issue all file upload requests in a sequential order instead of simultaneous requests.  
+                PF('fileUploadWV').jq.data().blueimpFileupload.options.sequentialUploads = true;
+
+                //every time a new file is added, sort the files based on name
+                PF('fileUploadWV').jq.change(function() {
+                    PF('fileUploadWV').files.sort(function fileSort(a, b) {
+                        return a.name.localeCompare(b.name)
+                    })
+                });
+            }
+        </script>
+
+    </ui:define>
+</ui:composition>        
+
+
+

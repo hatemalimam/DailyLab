@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">  
+
+    <h:head>  
+
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <meta charset="utf-8" />
+        <title>Daily Lab</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="shortcut icon" href="#{resource['/images/favicon.ico']}" />
+
+
+        <!-- BEGIN CORE CSS FRAMEWORK -->                
+        <h:outputStylesheet name="css/bootstrap/css/bootstrap.min.css" />
+        <h:outputStylesheet name="css/bootstrap/css/bootstrap-responsive.min.css" />   
+        <h:outputStylesheet name="css/font-awesome/css/font-awesome.css" /> 
+        <h:outputStylesheet name="css/animate.min.css" />              
+        <!-- END CORE CSS FRAMEWORK -->        
+
+        <!-- BEGIN CSS TEMPLATE -->                
+        <h:outputStylesheet name="css/style.css" /> 
+        <h:outputStylesheet name="css/responsive.css" />
+        <h:outputStylesheet name="css/custom-icon-set.css" />               
+        <!-- END CSS TEMPLATE -->
+
+        <h:outputStylesheet name="css/main.css" /> 
+        <h:outputScript name="css/bootstrap/js/bootstrap.min.js" /> 
+        <h:outputScript name="js/jquery.sidr.min.js" /> 
+        <h:outputScript name="js/breakpoints.js" /> 
+        <h:outputScript name="js/jquery.animateNumbers.js" />
+        <h:outputScript name="js/jquery.unveil.min.js" />         
+        <h:outputScript name="js/core.js" />  
+        <h:outputScript name="js/main.js" />                       
+    </h:head>  
+
+    <h:body>  
+
+        <!-- BEGIN HEADER -->
+
+
+        <p:idleMonitor />
+        <!-- BEGIN CONTAINER -->
+
+        <div class="page-container row-fluid">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar" id="main-menu"> 
+                <!-- BEGIN MINI-PROFILE -->
+                <div class="user-info-wrapper">	
+                    <div class="profile-wrapper">
+                        <img src="#{resource['images/avatar.png']}"  alt="" data-src="#{resource['images/avatar.png']}" data-src-retina="#{resource['images/avatar.png']}" width="69" height="69" />
+                    </div>
+                    <div class="user-info">
+                        <div class="greeting">Daily</div>
+                        <div class="username">Lab</div>                        
+                    </div>
+                </div>
+                <!-- END MINI-PROFILE -->
+
+                <!-- BEGIN SIDEBAR MENU -->	
+                <p class="menu-title">BROWSE <span class="pull-right"><a href="javascript:;"><i class="fa fa-refresh"></i></a></span></p>
+                <ul>	                   
+                    <li class=""> <a href="javascript:;"> <i class="fa fa-calendar"></i> <span class="title">Calendar</span> <span class="arrow "></span> </a>
+                        <ul class="sub-menu">
+                            <li > <a href="/DailyLab/calendar/calc.xhtml">Calculate Two Dates</a> </li>                            
+                        </ul>
+                    </li>
+                    <li class=""> <a href="javascript:;"> <i class="fa fa-check-square-o"></i> <span class="title">BooleanCheckbox</span> <span class="arrow "></span> </a>
+                        <ul class="sub-menu">
+                            <li> <a href="/DailyLab/checkBoxesJQuery/enable.xhtml">Enable Based on Value</a> </li>
+                            <li> <a href="/DailyLab/checkBoxesJQuery/main.xhtml">Roles CheckBoxes</a> </li>
+                            <li> <a href="/DailyLab/checkBoxesJQuery/checkall.xhtml">Check All</a> </li>
+                            <li> <a href="/DailyLab/checkBoxesJQuery/terms.xhtml">Accept Terms</a> </li>
+                        </ul>
+                    </li>                   
+                    <li class=""> <a href="javascript:;"> <i class="icon-custom-thumb"></i> <span class="title">DataTable</span> <span class="arrow "></span> </a>
+                        <ul class="sub-menu">
+                            <li> <a href="/DailyLab/datatable/main.xhtml">Scroll Style</a> </li>
+                            <li> <a href="/DailyLab/frozenTable/main.xhtml">Frozen Table</a> </li>
+                        </ul>
+                    </li>
+                    <li class=""> <a href="javascript:;"> <i class="fa fa-upload"></i> <span class="title">File Upload</span> <span class="arrow "></span> </a>
+                        <ul class="sub-menu">
+                            <li > <a href="/DailyLab/fileUpload/main.xhtml">Extra TextField</a> </li>                           
+                        </ul>
+                    </li>
+                    <li class=""> <a href="javascript:;"> <i class="fa fa-columns"></i> <span class="title">PickList</span> <span class="arrow "></span> </a>
+                        <ul class="sub-menu">
+                            <li > <a href="/DailyLab/pickList/transfer.xhtml">Filter and Pick</a> </li>                            
+                        </ul>
+                    </li>
+                    <li class=""> <a href="charts.html"> <i class="icon-custom-chart"></i> <span class="title">Charts</span> <span class="arrow "></span> </a>
+                        <ul class="sub-menu">
+                            <li > <a href="/DailyLab/pie/main.xhtml">Pie Highlight</a> </li>                            
+                        </ul></li>   
+                    <li class=""> <a href="charts.html"> <i class="fa fa-th-list"></i> <span class="title">Checkbox Menu</span> <span class="arrow "></span> </a>
+                        <ul class="sub-menu">
+                            <li > <a href="/DailyLab/selectCheckboxMenu/main.xhtml">Limit Validator</a> </li>
+                            <li > <a href="/DailyLab/selectCheckboxMenu/ajax.xhtml">Element Ajax Submit</a> </li> 
+                        </ul></li>
+                    <li class=""> <a href="charts.html"> <i class="fa fa-list"></i> <span class="title">Many Menu</span> <span class="arrow "></span> </a>
+                        <ul class="sub-menu">
+                            <li > <a href="/DailyLab/selectManyMenu/main.xhtml">Select Limit</a> </li>                            
+                        </ul></li>
+                    <li class=""> <a href="charts.html"> <i class="fa fa-align-justify"></i> <span class="title">One Menu</span> <span class="arrow "></span> </a>
+                        <ul class="sub-menu">
+                            <li > <a href="/DailyLab/selectOneMenu/mobileOptimized.xhtml">Mobile unfocus</a> </li>                            
+                        </ul></li>
+
+                    <li class=""> <a href="/DailyLab/textArea/main.xhtml"> <i class="fa fa-square-o"></i> <span class="title">TextArea</span> </a> </li>                   
+
+                </ul>
+                <div class="side-bar-widgets">
+                    <p class="menu-title">Projects <span class="pull-right"></span></p>
+                    <ul class="folders" >
+                        <li><a href="http://animatejsf.org" target="_blank"><div class="status-icon green"></div> AnimateJSF </a> </li>                        
+                    </ul>
+                    <p class="menu-title">Articles </p>
+                    <div class="status-widget">
+                        <div class="status-widget-wrapper">
+                            <div class="title"><a href="http://blog.hatemalimam.com/intro-to-primefaces-widgetvar/" target="_blank">Intro To PrimeFaces widgetVar</a></div>
+                            <p>javascript API provided by PrimeFaces</p>
+                        </div>
+                    </div> 
+                    <p class="menu-title">Disclaimer</p>
+                    <div class="status-widget">
+                        <div class="status-widget-wrapper">
+                            <div class="title">The lab examples are done based on StackOverflow questions, I use none in my own projects.<a href="#" class="remove-widget"><i class="icon-custom-cross"></i></a></div>				
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" class="scrollup">Scroll</a>
+                <div class="clearfix"></div>
+                <!-- END SIDEBAR MENU --> 
+            </div>
+            <div class="footer-widget">	
+
+                <a href="http://stackoverflow.com/users/833031/hatem-alimam">
+                    <img src="http://stackoverflow.com/users/flair/833031.png?theme=dark" width="208" height="58" alt="profile for Hatem Alimam at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Hatem Alimam at Stack Overflow, Q&amp;A for professional and enthusiast programmers" />
+                </a>
+            </div>
+            <!-- END SIDEBAR --> 
+            <!-- BEGIN PAGE CONTAINER-->
+            <div class="page-content">                                 
+                <div class="clearfix"></div>
+                <div class="content">                     
+                    <ui:insert name="content" />
+                </div>
+            </div>
+        </div>
+
+        <!-- BEGIN CHAT -->
+
+        <div id="sidr" class="sidr right">
+
+        </div>
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-19105826-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </h:body>  
+</html>  

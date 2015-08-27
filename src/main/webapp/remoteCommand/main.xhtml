@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"          
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <ui:composition template="/templates/default/main.xhtml">
+        <ui:define name="content">           
+            <div class="page-title">	
+                <h3>Rating</h3>		
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <p:remoteCommand  name="masterRemote" actionListener="#{mainBean.fillList()}" oncomplete="completeMaster(this ,xhr, status, args)"></p:remoteCommand>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>            
+            <script>
+                function completeMaster(remoteCommand ,xhr, status, args) {
+                    console.log(remoteCommand);
+                }
+                               
+                
+            </script>
+        </ui:define>
+    </ui:composition>        
+</html>  

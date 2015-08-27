@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"   
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/default/main.xhtml">
+    <ui:define name="content">
+        <div class="page-title">	
+            <h3>Calculate Two Dates</h3>		
+        </div>
+
+        <script>
+            $.layout.defaults.panes.tips = {
+                Open: "Visualizza"
+                , Close: "Chiudi"
+                , Resize: "Ridimensiona"
+                , Slide: "Scorri"
+                , Pin: "Attacca"
+                , Unpin: "Stacca"
+                , noRoomToOpen: "Non c'è abbastanza spazio per mostrare questo pannello."
+                , minSizeWarning: "Il pannello ha raggiunto la dimensione minima"
+                , maxSizeWarning: "Il pannello ha raggiunto la dimensione massima"
+            }
+        </script>
+
+        <p:layout expandTitle="Exp" closeTitle="Clos T" collapseTitle="Coll T" resizeTitle="ReS T" >
+            <p:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="North unit content." />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="South unit content." />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="West unit content." />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">
+                <h:outputText value="Right unit content." />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+
+
+            </p:layoutUnit>
+        </p:layout>
+
+    </ui:define>
+</ui:composition>        
+
