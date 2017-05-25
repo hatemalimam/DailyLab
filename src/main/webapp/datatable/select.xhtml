@@ -22,7 +22,7 @@
                                                      selection="#{mainBean.userPojo}"
                                                      var="user" rowKey="#{user.id}" widgetVar="dataTableWV">
                                             <p:ajax event="rowSelect"
-                                                    onstart="console.log(PF('dataTableWV').selection[0])"/>
+                                                    onstart="console.log(this)"/>
                                             <p:column>
                                                 <h:outputText value="#{user.name}" />
                                             </p:column>

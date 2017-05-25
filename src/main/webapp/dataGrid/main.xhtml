@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions" template="/WEB-INF/templates/default/main.xhtml">            
+    <ui:define name="content">
+        <style>
+
+        </style>
+        <div class="page-title">	
+            <h3>Carousel in dataGrid</h3>		
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="grid simple">
+                    <div class="grid-title no-border">                                
+                    </div>
+                    <div class="grid-body no-border"> <br />
+                        <div class="row">
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                <h:form id="form">
+                                    <p:dataGrid var="gridRow" value="#{[1,2,3,4,5]}" columns="1">
+                                        <p:carousel var="row" value="#{[1,2,3,4,5]}" numVisible="3">
+                                            <p:panel style="width: 100px; margin: 5px; padding: 5px;">Panel container : #{row}</p:panel>
+                                        </p:carousel>
+                                    </p:dataGrid>
+                                </h:form>                                                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+    </ui:define>
+</ui:composition>        
+
+

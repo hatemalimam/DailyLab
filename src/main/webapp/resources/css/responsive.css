@@ -393,7 +393,7 @@ and (orientation : portrait) {
 	.widget{
 		margin-right:0px;
 	}
-	.row-fluid.2col [class*="span"]{
+	.row-fluid.2col[class*="span"]{
 		width:48% !important;
 		margin:0px;
 		margin-bottom:10px;

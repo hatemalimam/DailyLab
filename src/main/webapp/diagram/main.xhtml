@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions" 
+				template="/WEB-INF/templates/default/main.xhtml">            
+    <ui:define name="content">
+		<div class="page-title">	
+            <h3>Diagram Events</h3>		
+        </div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="grid simple">
+					<div class="grid-title no-border">                                
+					</div>
+					<div class="grid-body no-border"> <br />
+						<div class="row">
+							<p:diagram id="diagram" value="#{mainBean.diagramModel}" style="height:400px" styleClass="ui-widget-content" widgetVar="diagramWV" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p:growl widgetVar="growlWV" />
+		<script src="https://gist.github.com/hatemalimam/344a2f564f1438426bc933eac4fccb58.js"></script>
+		<style type="text/css">
+			.ui-diagram-element {
+				border:0.1em dotted #d4e06b;    
+				width:14em; 
+				height:4em;     
+				line-height:4em;
+				text-align: center;
+			}
+		</style>
+
+		<script>
+			//<![CDATA[
+			$(document).ready(function () {
+				setTimeout(function () {
+					for (var key in PF('diagramWV').canvas.getAllConnections()) {
+
+						if (PF('diagramWV').canvas.getAllConnections().hasOwnProperty(key)) {
+
+							//Elemenets Events
+							$(PF('diagramWV').canvas.getAllConnections()[key].source).off('click').on('click', function () {
+								PF('growlWV').renderMessage({"summary": "Element Clicked with ID",
+									"detail": $(this).attr('id'),
+									"severity": "info"});
+							});
+
+							$(PF('diagramWV').canvas.getAllConnections()[key].target).off('click').on('click', function () {
+								PF('growlWV').renderMessage({"summary": "Element Clicked with ID",
+									"detail": $(this).attr('id'),
+									"severity": "info"});
+							});
+
+							//Connection Event
+							PF('diagramWV').canvas.getAllConnections()[key].bind("click", function (conn) {
+								PF('growlWV').renderMessage({"summary": "Connection Clicked",
+									"detail": "Source: " + conn.sourceId + " \n  Target:  " + conn.targetId,
+									"severity": "info"});
+							});
+						}
+					}
+				}, 500);
+			});
+			//]]>
+        </script>
+    </ui:define>
+</ui:composition>        
+
+

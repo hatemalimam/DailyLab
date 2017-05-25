@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <ui:composition template="/WEB-INF/templates/default/main.xhtml">
+        <ui:define name="content"> 
+            <style>
+
+            </style>
+
+
+
+
+
+            <div class="page-title">	
+                <h3>test</h3>		
+            </div>
+
+            <h:form>               
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                        <div class="form-group">
+                                            <p:commandButton value="test me" >
+                                                <p:ajax onstart="console.log(event)"></p:ajax>
+                                            </p:commandButton>
+                                        </div>                                                                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </h:form>
+
+           
+
+            <script>
+                //<![CDATA[
+                $(document).ready(function() {
+                    
+                });
+                //]]>
+            </script>
+        </ui:define>
+    </ui:composition>        
+</html>  
