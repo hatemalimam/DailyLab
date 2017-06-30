@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"        
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:pe="http://primefaces.org/ui/extensions">  
+
+
+    <ui:composition template="/WEB-INF/templates/default/main.xhtml">
+        <ui:define name="content">
+            <div class="page-title">	
+                <h3>Timepicker</h3>		                
+            </div>
+            <h:form id="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="grid simple">
+                            <div class="grid-title no-border">                                
+                            </div>
+                            <div class="grid-body no-border"> <br />
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-8">                                       
+                                        <div class="form-group">
+                                            <div class="controls">
+												<pe:timePicker id="startTime"
+															   mode="popup" startHours="0" endHours="23"
+															   showPeriod="true" widgetVar="startTimeWidget" 
+															   styleClass="form-control keyDownFalse disableEnterKey" >
+													<p:ajax event="timeSelect" partialSubmit="false"
+															update="endTime" onstart="console.log(arguments, cfg);" />
+												</pe:timePicker>
+                                            </div>
+                                        </div> 
+										<div class="form-group">
+                                            <div class="controls">
+												<pe:timePicker id="endTime"
+															   mode="popup" startHours="0" endHours="23"
+															   showPeriod="true" widgetVar="endTimeWidget" 
+															   styleClass="form-control keyDownFalse disableEnterKey" >
+													<p:ajax event="timeSelect" partialSubmit="false"/>
+												</pe:timePicker>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </h:form>
+
+            <script>
+				//<![CDATA[
+				$.extend($.fgtimepicker, {
+					_doKeyDown: function (event) {
+						var inst = $.fgtimepicker._getInst(event.target);
+						var handled = true;
+						inst._keyEvent = true;
+						if ($.fgtimepicker._timepickerShowing) {
+							switch (event.keyCode) {
+								case 9:
+									$.fgtimepicker._hideTimepicker();
+									handled = false;
+									break; // hide on tab out
+								case 13:
+									$.fgtimepicker._hideTimepicker();
+									handled = false;
+									break; // hide on tab out
+								case 27:
+									$.fgtimepicker._hideTimepicker();
+									break; // hide on escape
+								default:
+									handled = false;
+							}
+						} else if (event.keyCode == 36 && event.ctrlKey) { // display the time picker on ctrl+home
+							$.fgtimepicker._showTimepicker(this);
+						} else {
+							handled = false;
+						}
+						if (handled) {
+							event.preventDefault();
+							event.stopPropagation();
+						}
+					}
+				});
+				//]]>
+            </script>
+
+        </ui:define>
+    </ui:composition>        
+</html>  

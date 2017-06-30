@@ -13,7 +13,7 @@
                     </div>
                     <div class="grid-body no-border">
                         <p:fileUpload fileUploadListener="#{mainBean.handleFileUpload}" widgetVar="fileUpload"
-                                      sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                                      sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="msg" />
                     </div>
                 </div> 
             </div>
@@ -30,6 +30,7 @@
                 </div> 
             </div>
         </h:form>
+		<p:growl id="msg" widgetVar="growlWV" showDetail="true" />
         <script src="https://gist.github.com/hatemalimam/c42517b893f1c9533710.js"></script>
         <script src="https://gist.github.com/hatemalimam/1cfc47eac7e3c5fd26e5.js"></script>
         <script src="https://gist.github.com/hatemalimam/b479a826917776c69131.js"></script>

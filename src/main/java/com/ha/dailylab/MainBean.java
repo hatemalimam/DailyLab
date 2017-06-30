@@ -235,7 +235,6 @@ public class MainBean implements Serializable {
 		Element elementC = new Element("C", "40em", "18em");
 		elementC.setId("element-c");
 		elementC.addEndPoint(new DotEndPoint(EndPointAnchor.TOP));
-		
 
 		diagramModel.addElement(elementA);
 		diagramModel.addElement(elementB);
@@ -267,6 +266,13 @@ public class MainBean implements Serializable {
 		String paramName = "title[" + event.getFile().getFileName() + "]";
 		String fileWithTitle = (String) map.get(paramName);
 		fileWithTitle = (fileWithTitle == null) ? "not found" : "";
+
+		FacesMessage message = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+		RequestContext.getCurrentInstance().execute("PF('growlWV').renderMessage("
+				+ "{\"summary\":\"summary goes here\""
+				+ ", \"detail\":\"" + event.getFile().getFileName() + "\""
+				+ ", \"severity\":\"warn\"})");
 		RequestContext.getCurrentInstance().execute("$('#result').append('" + "<li> File Name: <span class=\"semi-bold\">" + event.getFile().getFileName() + "</span> Title: <span class=\"semi-bold\">" + fileWithTitle + "</span></li>')");
 	}
 

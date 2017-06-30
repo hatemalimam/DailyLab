@@ -1,0 +1,99 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"   
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/default/main.xhtml">
+    <ui:define name="content">
+        <div class="page-title">	
+            <h3>Editor</h3>		
+        </div>
+        <h:form>               
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="grid simple">
+                        <div class="grid-title no-border">                                
+                        </div>
+                        <div class="grid-body no-border"> <br />
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <div class="form-group">                                       
+                                        <div class="controls">
+											<p:editor id="editor" widgetVar="editorWidget" width="600" />
+                                        </div>
+                                    </div>                                                     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>        
+        <script>
+			//<![CDATA[
+			$.fn.cleditor.execCommand = function (editor, command, value, useCSS, button) {
+				console.log('this is a test');
+				// Restore the current ie selection
+				restoreRange(editor);
+
+				// Set the styling method
+				if (!ie) {
+					if (useCSS === undefined || useCSS === null)
+						useCSS = editor.options.useCSS;
+					editor.doc.execCommand("styleWithCSS", 0, useCSS.toString());
+				}
+
+				// Execute the command and check for error
+				var inserthtml = command.toLowerCase() === "inserthtml";
+				if (ie && inserthtml) {
+					/*
+					 Despite having access to pasteHTML, IE8 will produce an 'unspecified error'
+					 if it is invoked. The only way to detect this bug is via try catch.
+					 */
+					try {
+						getRange(editor).pasteHTML(value);
+					} catch (e) {
+						// An empty document needs selection beforehand
+						if (/^\s*$/.test(editor.doc.body.innerText)) {
+							editor.doc.execCommand('selectAll', false, null);
+						}
+
+						// execCommand is the standard method for contentEditable elements
+						editor.doc.execCommand("Paste", 0, value || null);
+					}
+				} else if (iege11 && inserthtml) {
+					var selection = getSelection(editor),
+							range = selection.getRangeAt(0);
+					range.deleteContents();
+					range.insertNode(range.createContextualFragment(value));
+					selection.removeAllRanges();
+					selection.addRange(range);
+				} else {
+					var success = true, message;
+					try {
+						success = editor.doc.execCommand(command, 0, value || null);
+					} catch (err) {
+						message = err.message;
+						success = false;
+					}
+					if (!success) {
+						if ("cutcopypaste".indexOf(command) > -1)
+							showMessage(editor, "For security reasons, your browser does not support the " +
+									command + " command. Try using the keyboard shortcut or context menu instead.",
+									button);
+						else
+							showMessage(editor,
+									(message ? message : "Error executing the " + command + " command."),
+									button);
+					}
+				}
+
+				// Enable the buttons and update the textarea
+				refreshButtons(editor);
+				updateTextArea(editor, true);
+				return success;
+
+			}
+			//]]>
+        </script>
+    </ui:define>
+</ui:composition>        
+

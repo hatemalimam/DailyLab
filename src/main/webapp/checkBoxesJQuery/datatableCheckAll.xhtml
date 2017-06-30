@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"  
+                xmlns:h="http://java.sun.com/jsf/html"  
+                xmlns:f="http://java.sun.com/jsf/core"  
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/default/main.xhtml">
+    <ui:define name="content">
+        <div class="page-title">	
+            <h3>Check All</h3>		
+        </div>
+        <h:form id="form">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="grid simple">
+                        <div class="grid-title no-border">                                
+                        </div>
+                        <div class="grid-body no-border"> <br />
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+									<h:form id="form">
+                                        <p:dataTable scrollHeight="900" scrollable="true" scrollRows="2" value="#{mainBean.list}" var="user" rowIndexVar="rowIndexVar">
+                                            <p:column  headerText="Check All" styleClass="test">
+												<div class="form-group">
+													<p:outputLabel value="Check All" />                                                
+													<div class="controls">
+														<p:selectBooleanCheckbox itemLabel="Check All" widgetVar="checkAllWV#{rowIndexVar}" onchange="selectAllCheckBoxes(PF('checkAllWV#{rowIndexVar}'), PF('manyCheckWV#{rowIndexVar}'))" >
+														</p:selectBooleanCheckbox>
+													</div>
+												</div> 
+                                            </p:column>
+											<p:column headerText="CheckBpxes">
+												<div class="form-group">
+													<p:outputLabel value="Select One Menu" />                                                
+													<div class="controls">
+														<p:selectManyCheckbox widgetVar="manyCheckWV#{rowIndexVar}">                                                    
+															<f:selectItems value="#{mainBean.list}" var="user"
+																		   itemLabel="#{user.name}" itemValue="#{user.name}" />
+														</p:selectManyCheckbox>
+													</div>
+												</div>
+											</p:column>
+                                        </p:dataTable>
+                                    </h:form>
+
+                                </div>
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </h:form>            
+        <script>
+			function selectAllCheckBoxes(selectAllCheckbox, manyCheckBoxes) {
+				manyCheckBoxes.inputs.each(function () {
+					if (selectAllCheckbox.isChecked()) {
+						$(this).prop('checked', false)
+						selectAllCheckbox.jq.find('.ui-chkbox-label').text('Uncheck all')
+					} else {
+						$(this).prop('checked', true)
+						selectAllCheckbox.jq.find('.ui-chkbox-label').text('Check all')
+					}
+					$(this).trigger('click');
+				});
+			}
+
+        </script>
+
+    </ui:define>
+</ui:composition>          
+
+
+
